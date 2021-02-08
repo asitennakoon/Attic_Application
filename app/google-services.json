@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "867415318652",
+    "project_id": "ar-load",
+    "storage_bucket": "ar-load.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867415318652:android:5b24b83df7cb791e2769f9",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867415318652-k2mhl3bcv9ds7cseb7p90o9tk0vlasml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiiDe34bGGWts0TQoG2TJHqlPh2qHpip4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867415318652-k2mhl3bcv9ds7cseb7p90o9tk0vlasml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
