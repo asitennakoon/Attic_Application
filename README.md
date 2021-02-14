@@ -10,4 +10,4 @@ is determined by Attic itself by analysing the camera view with the help of a de
 
 ## Technologies Used
 
-<img src="https://img.shields.io/badge/Android-inactive?logo=Android"> <img src="https://img.shields.io/badge/Python-yellow?logo=Python"> <img src="https://img.shields.io/badge/TensorFlow-lightgrey?logo=TensorFlow"> <img src="https://img.shields.io/badge/Keras-red?logo=keras"> <img src="https://img.shields.io/badge/Firebase-yellow?logo=firebase"> <img src="https://img.shields.io/badge/ARCore-blueviolet"> <img src="https://img.shields.io/badge/Sceneform-blueviolet">
+<img src="https://img.shields.io/badge/Android-inactive?logo=Android"> <img src="https://img.shields.io/badge/Python-yellow?logo=Python"> <img src="https://img.shields.io/badge/TensorFlow-lightgrey?logo=TensorFlow"> <img src="https://img.shields.io/badge/Keras-red?logo=keras"> <img src="https://img.shields.io/badge/Firebase-yellow?logo=firebase"> <img src="https://img.shields.io/badge/ARCore-blueviolet?logo=google"> <img src="https://img.shields.io/badge/Sceneform-blueviolet?logo=android-studio">
