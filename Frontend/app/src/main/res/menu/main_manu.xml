@@ -6,7 +6,8 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_category"
-            android:title="Categories" />
+            android:title="Categories"
+            />
     </group>
     <group android:checkableBehavior="single">
         <item

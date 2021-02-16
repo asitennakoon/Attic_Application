@@ -11,9 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 public class Ar_item extends AppCompatActivity {
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
+//    DrawerLayout drawerLayout;
+//    NavigationView navigationView;
+//    Toolbar toolbar;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

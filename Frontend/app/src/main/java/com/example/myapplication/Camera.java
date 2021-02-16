@@ -29,7 +29,7 @@ public class Camera extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.camera_screen);
+//        setContentView(R.layout.camera_screen);
 
 //        capturedImage = findViewById(R.id.image_view);
 //        btnCamera = findViewById(R.id.btnCamera);
@@ -70,6 +70,7 @@ public class Camera extends AppCompatActivity {
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
                 startActivityForResult(cameraIntent,IMAGE_REQUEST);
 //                startActivity(cameraIntent);
+                setContentView(R.layout.camera_screen);
 
             }
         }

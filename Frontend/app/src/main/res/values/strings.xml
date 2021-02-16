@@ -2,4 +2,19 @@
     <string name="app_name">My Application</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="wecomeMsg">Welcome to Attic!</string>
+    <string name="introduction">Attic is a modern furnishing mobile application powered by machine learning and augmented reality.</string>
+    <string name="homeCategoryHeading">Choose by Category</string>
+    <string name="beds">Beds</string>
+    <string name="sofas">Sofas</string>
+    <string name="office">Office</string>
+    <string name="decor_items">Decor Items</string>
+    <string name="tables">Tables</string>
+    <string name="chairs">Chairs</string>
+    <string name="homeStart">GET STARTED</string>
+    <string name="logoName">ATTIC</string>
+    <string name="view_ar_products">View AR Products</string>
+    <string name="view_captured_image">View Captured Image</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="office_furniture">Office Furniture</string>
 </resources>

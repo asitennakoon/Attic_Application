@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dip"
-        android:text="ATTIC"
+        android:text="@string/logoName"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarAR"
         app:layout_constraintEnd_toEndOf="@+id/toolbarAR"
         app:layout_constraintTop_toTopOf="@+id/toolbarAR" />
