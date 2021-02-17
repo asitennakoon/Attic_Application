@@ -24,17 +24,17 @@ public class Camera extends AppCompatActivity {
     private static final String TAG = "camera";
     private Button btnCamera;
     private ImageView capturedImage;
-    public static String currentImagePath = null;
-    private static final int IMAGE_REQUEST = 1;
+//    public static String currentImagePath = null;
+//    private static final int IMAGE_REQUEST = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.camera_screen);
+        setContentView(R.layout.camera_screen);
 
 //        capturedImage = findViewById(R.id.image_view);
 //        btnCamera = findViewById(R.id.btnCamera);
 
-        capture_image();
+//        capture_image();
     }
 
 
@@ -54,27 +54,27 @@ public class Camera extends AppCompatActivity {
 
 
     //capture background image
-    public void capture_image(){
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(cameraIntent.resolveActivity(getPackageManager())!=null){
-            File imageFile = null;
-
-            try {
-                imageFile = getImageFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if( imageFile!=null ){
-                Uri imageUri = FileProvider.getUriForFile(this,"com.example.myapplication.fileprovider",imageFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                startActivityForResult(cameraIntent,IMAGE_REQUEST);
-//                startActivity(cameraIntent);
-                setContentView(R.layout.camera_screen);
-
-            }
-        }
-    }
+//    public void capture_image(){
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if(cameraIntent.resolveActivity(getPackageManager())!=null){
+//            File imageFile = null;
+//
+//            try {
+//                imageFile = getImageFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            if( imageFile!=null ){
+//                Uri imageUri = FileProvider.getUriForFile(this,"com.example.myapplication.fileprovider",imageFile);
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+//                startActivityForResult(cameraIntent,IMAGE_REQUEST);
+////                startActivity(cameraIntent);
+////                setContentView(R.layout.camera_screen);
+//
+//            }
+//        }
+//    }
 
     //display background image for the user
     public void display_image(View view){
@@ -89,13 +89,13 @@ public class Camera extends AppCompatActivity {
 
 
     //get the image file from the device storage
-    public File getImageFile() throws IOException{
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageName = "attic_"+timeStamp+"_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        File imageFile = File.createTempFile(imageName,".jpg",storageDir);
-        currentImagePath = imageFile.getAbsolutePath();
-        return imageFile;
-    }
+//    public File getImageFile() throws IOException{
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageName = "attic_"+timeStamp+"_";
+//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//
+//        File imageFile = File.createTempFile(imageName,".jpg",storageDir);
+//        currentImagePath = imageFile.getAbsolutePath();
+//        return imageFile;
+//    }
 }

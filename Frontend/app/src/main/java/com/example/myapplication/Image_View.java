@@ -17,7 +17,7 @@ public class Image_View extends AppCompatActivity {
     public void displayCapturedImage(){
         ImageView capturedImage = findViewById(R.id.camera_feed);
 
-        Bitmap bitmap = BitmapFactory.decodeFile(Camera.currentImagePath);
+        Bitmap bitmap = BitmapFactory.decodeFile(Category.currentImagePath);
         capturedImage.setImageBitmap(bitmap);
     }
 
