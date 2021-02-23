@@ -9,14 +9,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +27,8 @@ public class Category extends AppCompatActivity  {
     public static final int IMAGE_REQUEST_CODE = 102;
     public static String currentImagePath = null;
     private static final int IMAGE_REQUEST = 1;
+    // Hardcoded for testing purposes
+    static String chosenCategory = "Table & Chair";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +78,7 @@ public class Category extends AppCompatActivity  {
 
 
     public void openCamera(){
-        Toast.makeText(this, "Camera open request", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Camera open request", Toast.LENGTH_SHORT).show();
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         if(cameraIntent.resolveActivity(getPackageManager())!=null){
@@ -90,7 +90,7 @@ public class Category extends AppCompatActivity  {
                 e.printStackTrace();
             }
 
-            Toast.makeText(this,"File created",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"File created",Toast.LENGTH_SHORT).show();
 
             if( imageFile!=null ){
                 Uri imageUri = FileProvider.getUriForFile(this,"com.example.myapplication.fileprovider",imageFile);
