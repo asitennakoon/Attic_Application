@@ -1,0 +1,31 @@
+<div *ngIf="showContent">
+    <h1>ha ha</h1>
+</div>
+
+<div class="login-main" *ngIf="!showContent">
+    <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
+    <mat-card class="login-mat" >
+        
+        <mat-card-header>
+            <mat-card-title>Admin Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+            <mat-form-field>
+                <input formControlName="username" type="text"matInput placeholder="Username">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input formControlName="password" type="password" name="password" type="password" matInput placeholder="password">
+            </mat-form-field>
+            <br>
+            <mat-error *ngIf="!credentialsValid" >
+                    Username or Password is Incorrect.
+            </mat-error>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button type="submit" mat-raised-button color="primary">Login</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+</div>
+

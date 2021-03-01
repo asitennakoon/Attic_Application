@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ar-load": {
+      "hosting": {
+        "AtticWeb": [
+          "ar-load"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ar-load"
+  }
+}
