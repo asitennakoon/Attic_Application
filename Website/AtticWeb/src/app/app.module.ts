@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 
 
 
+
 // importing firebase modules for database purposes.
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+
+import { AngularFireStorageModule,} from "@angular/fire/storage";
 // database configurations are declared in the environment
 import { firebaseConfig } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +50,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -64,13 +68,15 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
+    AngularFireStorageModule,
+    
+
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
-
-
-
+    MatProgressBarModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -80,6 +86,10 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     MatAutocompleteModule,
     MatDatepickerModule,
     MatFormFieldModule,
+
+
+
+
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,
@@ -97,7 +107,6 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     MatChipsModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule,
     MatDialogModule,
     MatTooltipModule,
     MatSnackBarModule,

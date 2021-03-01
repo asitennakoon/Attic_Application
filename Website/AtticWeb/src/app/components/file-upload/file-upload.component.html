@@ -1,1 +1,10 @@
 <p>file-upload works!</p>
+
+<label for ="Image">Image File</label>
+<input type="file" (change)="upload($event)" id="" >
+<button (click)="uploadImage()">upload Image</button>
+<br>
+<div *ngIf="progressBarVisible">
+    <mat-progress-bar [mode]="'indeterminate'"  ></mat-progress-bar>
+</div>
+<img [src]="url" width="500px" alt="sdv">
