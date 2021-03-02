@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment_category">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:elevation="1dip"
+            android:orientation="vertical"
+            android:padding="20dip">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:fontFamily="@font/poppins_light"
+                android:paddingStart="30dip"
+                android:paddingTop="15dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="15dip"
+                android:text="What are you looking for? "
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:background="@drawable/category_btn"
+                android:drawableStart="@drawable/chair"
+                android:fontFamily="@font/poppins_light"
+                android:icon="@drawable/chair"
+                android:paddingStart="30dip"
+                android:paddingTop="20dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="20dip"
+                android:text="Chairs"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#6E4D00" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:background="@drawable/category_btn"
+                android:drawableStart="@drawable/cabinet"
+                android:fontFamily="@font/poppins_light"
+                android:icon="@drawable/chair"
+                android:paddingStart="30dip"
+                android:paddingTop="20dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="20dip"
+                android:text="Tables"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#6E4D00" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:background="@drawable/category_btn"
+                android:drawableStart="@drawable/furniture"
+                android:fontFamily="@font/poppins_light"
+                android:icon="@drawable/chair"
+                android:paddingStart="30dip"
+                android:paddingTop="20dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="20dip"
+                android:text="Decor Items"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#6E4D00" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:background="@drawable/category_btn"
+                android:drawableStart="@drawable/office_chair"
+                android:fontFamily="@font/poppins_light"
+                android:icon="@drawable/chair"
+                android:paddingStart="30dip"
+                android:paddingTop="20dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="20dip"
+                android:text="Office Furniture"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#6E4D00" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:background="@drawable/category_btn"
+                android:drawableStart="@drawable/sofa"
+                android:fontFamily="@font/poppins_light"
+                android:icon="@drawable/chair"
+                android:paddingStart="30dip"
+                android:paddingTop="20dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="20dip"
+                android:text="Sofas"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#6E4D00" />
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:background="@drawable/category_btn"
+                android:drawableStart="@drawable/beds"
+                android:fontFamily="@font/poppins_light"
+                android:icon="@drawable/chair"
+                android:paddingStart="30dip"
+                android:paddingTop="20dip"
+                android:paddingEnd="30dip"
+                android:paddingBottom="20dip"
+                android:text="Beds"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#6E4D00" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

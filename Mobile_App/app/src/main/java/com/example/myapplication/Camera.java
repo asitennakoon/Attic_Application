@@ -1,8 +1,12 @@
 package com.example.myapplication;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -18,18 +24,33 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Camera extends AppCompatActivity {
 
     private static final String TAG = "camera";
     private Button btnCamera;
     private ImageView capturedImage;
+    private Classifier.Device device = Classifier.Device.CPU;
+    private int numThreads = -1;
+    private Integer sensorOrientation;
+    List<Classifier.Recognition> probabilityOutput;
+    static String predictedClass;
 //    public static String currentImagePath = null;
 //    private static final int IMAGE_REQUEST = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_screen);
+
+        Bitmap bitmap = BitmapFactory.decodeFile(Category.currentImagePath);
+        try {
+            probabilityOutput = Classifier.create(this,device,numThreads).recognizeImage(bitmap,0);
+            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_SHORT).show();
+            predictedClass = probabilityOutput.get(0).toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 //        capturedImage = findViewById(R.id.image_view);
 //        btnCamera = findViewById(R.id.btnCamera);

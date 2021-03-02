@@ -1,0 +1,3 @@
+0 Bedroom
+1 Livingroom
+2 Diningroom

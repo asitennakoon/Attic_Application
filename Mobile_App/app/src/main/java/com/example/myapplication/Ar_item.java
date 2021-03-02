@@ -27,7 +27,6 @@ import java.io.IOException;
 
 public class Ar_item extends AppCompatActivity {
     // When trained, the output of the deep learning model (as a string) would be assigned here
-    String predictedClass = "Scene 1";
 //    DrawerLayout drawerLayout;
 //    NavigationView navigationView;
 //    Toolbar toolbar;
@@ -57,7 +56,7 @@ public class Ar_item extends AppCompatActivity {
             previewRef1.getFile(preview1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(Ar_item.this, "Showing previews for " + Category.chosenCategory + " categories of " + predictedClass, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Ar_item.this, "Showing previews for " + Category.chosenCategory + " categories of " + Camera.predictedClass, Toast.LENGTH_SHORT).show();
                     Bitmap bitmap = BitmapFactory.decodeFile(preview1.getAbsolutePath());
                     ((ImageView) findViewById(R.id.imageView)).setImageBitmap(bitmap);
                 }
