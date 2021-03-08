@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ public class Camera extends AppCompatActivity {
 
     private static final String TAG = "camera";
     private Button btnCamera;
+    private Button predictedCategoryBtn;
     private ImageView capturedImage;
     private Classifier.Device device = Classifier.Device.CPU;
     private int numThreads = -1;
@@ -39,6 +41,7 @@ public class Camera extends AppCompatActivity {
 //    public static String currentImagePath = null;
 //    private static final int IMAGE_REQUEST = 1;
 
+    @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_screen);
@@ -46,8 +49,10 @@ public class Camera extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeFile(Category.currentImagePath);
         try {
             probabilityOutput = Classifier.create(this,device,numThreads).recognizeImage(bitmap,0);
-            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_SHORT).show();
             predictedClass = probabilityOutput.get(0).toString();
+            predictedCategoryBtn= (Button)findViewById(R.id.categoryPrediction);
+            predictedCategoryBtn.setText("Background Image Category - " + predictedClass);
         } catch (IOException e) {
             e.printStackTrace();
         }

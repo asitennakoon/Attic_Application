@@ -115,7 +115,16 @@
                 android:layout_margin="20dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/splash_3" />
-
+            <Button
+                android:id="@+id/categoryPrediction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="Background Image Caegory -"
+                android:textAllCaps="false" />
         </LinearLayout>
     </LinearLayout>
 
