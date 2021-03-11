@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ar_item"/>
+        <activity android:name=".Ar_Item"/>
         <activity android:name=".Camera"/>
         <activity android:name=".Image_View"/>
         <activity android:name=".Category"/>

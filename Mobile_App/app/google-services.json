@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "867415318652",
-    "project_id": "ar-load",
-    "storage_bucket": "ar-load.appspot.com"
+    "project_number": "109489326265",
+    "project_id": "attic-b6655",
+    "storage_bucket": "attic-b6655.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:867415318652:android:5b24b83df7cb791e2769f9",
+        "mobilesdk_app_id": "1:109489326265:android:6a35ba09ab81427d447368",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "867415318652-k2mhl3bcv9ds7cseb7p90o9tk0vlasml.apps.googleusercontent.com",
+          "client_id": "109489326265-kns89m7oieodfcst7bfmr07j6mp2ssb5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDiiDe34bGGWts0TQoG2TJHqlPh2qHpip4"
+          "current_key": "AIzaSyA-j_o47wWWYf7RH3S8ghJCSZEiqPCGXZE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "867415318652-k2mhl3bcv9ds7cseb7p90o9tk0vlasml.apps.googleusercontent.com",
+              "client_id": "109489326265-kns89m7oieodfcst7bfmr07j6mp2ssb5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

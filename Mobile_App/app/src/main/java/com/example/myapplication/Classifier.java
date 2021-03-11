@@ -20,17 +20,9 @@ import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.os.Trace;
-import java.io.IOException;
-import java.nio.MappedByteBuffer;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
-import com.example.myapplication.Logger;
-import com.example.myapplication.Classifier.Device;
 import org.tensorflow.lite.gpu.GpuDelegate;
 import org.tensorflow.lite.support.common.FileUtil;
 import org.tensorflow.lite.support.common.TensorOperator;
@@ -44,9 +36,16 @@ import org.tensorflow.lite.support.image.ops.Rot90Op;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+import java.io.IOException;
+import java.nio.MappedByteBuffer;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+
 /** A classifier specialized to label images using TensorFlow Lite. */
 public abstract class Classifier {
-  private static final Logger LOGGER = new Logger();
 
   /** The runtime device type used for executing classification. */
   public enum Device {
@@ -212,7 +211,6 @@ public abstract class Classifier {
     // Creates the post processor for the output probability.
     probabilityProcessor = new TensorProcessor.Builder().add(getPostprocessNormalizeOp()).build();
 
-    LOGGER.d("Created a Tensorflow Lite Image Classifier.");
   }
 
   /** Runs inference and returns the classification results. */
@@ -225,7 +223,6 @@ public abstract class Classifier {
     inputImageBuffer = loadImage(bitmap, sensorOrientation);
     long endTimeForLoadImage = SystemClock.uptimeMillis();
     Trace.endSection();
-    LOGGER.v("Timecost to load the image: " + (endTimeForLoadImage - startTimeForLoadImage));
 
     // Runs the inference call.
     Trace.beginSection("runInference");
@@ -234,7 +231,6 @@ public abstract class Classifier {
     tflite.run(inputImageBuffer.getBuffer(), outputProbabilityBuffer.getBuffer().rewind());
     long endTimeForReference = SystemClock.uptimeMillis();
     Trace.endSection();
-    LOGGER.v("Timecost to run model inference: " + (endTimeForReference - startTimeForReference));
 
     // Gets the map of label and probability.
     // TODO: Use TensorLabel from TFLite Support Library to associate the probabilities
