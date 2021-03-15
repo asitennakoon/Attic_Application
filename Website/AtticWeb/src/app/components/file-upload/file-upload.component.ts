@@ -11,7 +11,9 @@ export class FileUploadComponent implements OnInit {
 
   path: String="";
   name: String ="";
-  url: string="";
+
+  defaultImage: string="../../../assets/images/np.png";
+  url: string=this.defaultImage;
 
   progressBarVisible:boolean;
 
@@ -28,30 +30,39 @@ export class FileUploadComponent implements OnInit {
   upload($event){
     this.progressBarVisible=true;
 
+    
 
-    this.path=$event.target.files[0];
-    this.name=$event.target.files[0].name;
+      this.path=$event.target.files[0];
+      this.name=$event.target.files[0].name;
+  
+       setTimeout(()=>{
+        this.progressBarVisible=false;
+      }, 400);
 
-    if(this.name.endsWith(".png")){
-   var reader = new FileReader();
-   reader.readAsDataURL($event.target.files[0]);
-
-   reader.onload=(event: any)=>{
-    this.url=event.target.result;
-   }
-  }
-
-
-   this.progressBarVisible=false;
+       if(this.name.endsWith(".png")|| this.name.endsWith(".jpg")){
+        var reader = new FileReader();
+        reader.readAsDataURL($event.target.files[0]);
+     
+        reader.onload=(event: any)=>{
+         this.url=event.target.result;
+          }
+         }
+         else{
+           this.url=this.defaultImage;
+         }
   }
 
   uploadImage(){
     this.progressBarVisible=true;
 
+    setTimeout(()=>{
+      this.progressBarVisible=false;
+    }, 400);
+
     console.log(this.path);
     this.firestore.upload("/testWeb/"+this.name, this.path );
 
-    this.progressBarVisible=false;
+    
 
   }
 

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public accounts:IAccount[]=[];
 
   
-  public credentialsValid=false;
+  public credentialsValid=true;
   public showContent=false;
 
   public loginForm: FormGroup;

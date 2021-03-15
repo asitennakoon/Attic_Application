@@ -1,13 +1,16 @@
-<div *ngIf="showContent">
-    <app-file-upload></app-file-upload>
-</div>
 
-<div class="login-main" *ngIf="!showContent">
+<div class="content"*ngIf="!showContent">
+    <div class="img">
+        <img src="../../../assets/images/logo.png"  alt="">
+    </div>
+
+
+<div class="login-main" >
     <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
     <mat-card class="login-mat" >
         
         <mat-card-header>
-            <mat-card-title>Admin Login</mat-card-title>
+            <mat-card-title>Login</mat-card-title>
         </mat-card-header>
         <mat-card-content fxLayout="column">
             <mat-form-field>
@@ -21,6 +24,10 @@
             <mat-error *ngIf="!credentialsValid" >
                     Username or Password is Incorrect.
             </mat-error>
+
+            <br *ngIf="credentialsValid">
+          
+
         </mat-card-content>
         <mat-card-actions align="end">
             <button type="submit" mat-raised-button color="primary">Login</button>
@@ -28,4 +35,10 @@
     </mat-card>
 </form>
 </div>
+</div>
+
+<div *ngIf="showContent">
+    <app-file-upload></app-file-upload>
+</div>
+
 

@@ -1,10 +1,38 @@
-<p>file-upload works!</p>
-
-<label for ="Image">Image File</label>
-<input type="file" (change)="upload($event)" id="" >
-<button (click)="uploadImage()">upload Image</button>
-<br>
-<div *ngIf="progressBarVisible">
-    <mat-progress-bar [mode]="'indeterminate'"  ></mat-progress-bar>
+<div style="margin: 0%;" >
+    <mat-toolbar>
+        <h1>Upload to FireStore</h1>
+    </mat-toolbar>
+    
 </div>
-<img [src]="url" width="500px" alt="sdv">
+
+<div class="content">
+    
+    <div class="content-div1">
+    
+        
+        <div style="margin-top: 3vh; text-align: center; margin-bottom: 3vh;">
+            
+        <label for ="Image">Select Image File</label>
+        </div>
+    
+        <div style="text-align: left; margin-left:2.3vw; margin-bottom: 2vh;">
+            <input type="file" (change)="upload($event)" id="" >
+        </div>
+        <div *ngIf="progressBarVisible">
+            <mat-progress-bar [mode]="'indeterminate'"  ></mat-progress-bar>
+        </div>
+    
+        <div style="text-align: left; margin-left:3vw">
+            <button (click)="uploadImage()">upload Image</button>
+        </div>
+
+        
+    
+        
+    </div>
+    
+    <div class="content-div2">
+        <img [src]="url" height="100%"  alt="preview image">
+    </div>    
+</div>
+

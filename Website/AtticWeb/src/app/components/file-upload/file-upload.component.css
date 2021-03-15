@@ -1,0 +1,70 @@
+h1{
+    
+    margin-left: auto;
+    margin-right: auto;
+   
+    width: 30%;
+    text-align: center;
+    font: 400 30px/32px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    
+}
+
+.content{
+    height: 50vh;
+
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    margin-top: 5vh;
+    text-align: center;
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    font: 400 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    
+}
+.content-div1{
+    width: 20vw;
+    float: left;
+
+}
+.content-div2{
+    margin-top: 3vh;
+    width: 40vw;
+    height: 40vh;
+    float: right;
+
+}
+
+input{
+    font: 400 12px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    padding: 8px 12px;
+    
+
+
+}
+
+
+
+button{
+    
+    font: 400 12px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    padding: 5px 12px;
+
+    box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background:linear-gradient(to bottom, #febd38 5%, #e78200 100%);
+	background-color:#febd38;
+	border-radius:6px;
+	border:1px solid #ff6b6b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	
+	
+	
+	text-decoration:none;
+
+
+}
