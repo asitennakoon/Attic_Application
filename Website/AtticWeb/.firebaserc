@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "ar-load": {
-      "hosting": {
-        "AtticWeb": [
-          "ar-load"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "ar-load"
+    "default": "attic-b6655"
   }
 }

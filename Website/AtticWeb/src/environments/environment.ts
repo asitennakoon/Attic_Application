@@ -6,17 +6,15 @@ export const environment = {
   production: false
 };
 
-
 // firebase configurations
 export const firebaseConfig = {
-  apiKey: "AIzaSyAVvNpYWalI8fZ8EpE0S11pCUUond0MPeQ",
-  authDomain: "ar-load.firebaseapp.com",
-  databaseURL: "https://ar-load-default-rtdb.firebaseio.com",
-  projectId: "ar-load",
-  storageBucket: "ar-load.appspot.com",
-  messagingSenderId: "867415318652",
-  appId: "1:867415318652:web:05118bb257040aee2769f9",
-  measurementId: "G-T07X0WFZRL"
+  apiKey: "AIzaSyCU_hDV3QZMRcEJ9Z7piImaY48KqOvVlsI",
+  authDomain: "attic-b6655.firebaseapp.com",
+  projectId: "attic-b6655",
+  storageBucket: "attic-b6655.appspot.com",
+  messagingSenderId: "109489326265",
+  appId: "1:109489326265:web:e502f9c6c27966d9447368",
+  measurementId: "G-9DCTKH9SCF"
 };
 
 /*
