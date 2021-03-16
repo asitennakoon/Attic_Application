@@ -51,6 +51,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 
 
@@ -61,6 +62,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppComponent,
     routingComponents,
     FileUploadComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

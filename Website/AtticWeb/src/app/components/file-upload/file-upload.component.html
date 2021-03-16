@@ -1,38 +1,120 @@
-<div style="margin: 0%;" >
-    <mat-toolbar>
-        <h1>Upload to FireStore</h1>
-    </mat-toolbar>
-    
+<div class="header">
+    <app-header></app-header>
+
 </div>
 
 <div class="content">
-    
+
+
+
     <div class="content-div1">
-    
-        
-        <div style="margin-top: 3vh; text-align: center; margin-bottom: 3vh;">
-            
-        <label for ="Image">Select Image File</label>
-        </div>
-    
-        <div style="text-align: left; margin-left:2.3vw; margin-bottom: 2vh;">
-            <input type="file" (change)="upload($event)" id="" >
-        </div>
-        <div *ngIf="progressBarVisible">
-            <mat-progress-bar [mode]="'indeterminate'"  ></mat-progress-bar>
-        </div>
-    
-        <div style="text-align: left; margin-left:3vw">
-            <button (click)="uploadImage()">upload Image</button>
+        <div class="model-image">
+
+            <div class="file1">
+
+                <input type="file" (change)="upload($event)" id="file1">
+                <label for="file1">+</label>
+                <br>
+                <h3>{{modelUpload}}</h3>
+
+            </div>
+
+            <div *ngIf="progressBarVisible">
+                <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
+            </div>
         </div>
 
-        
+
+        <div class="preview">
+            <div class="preview-image mar-right">
+
+                <!-- <div class="file2">
     
-        
+                    <input type="file" (change)="upload($event)" id="file2">
+                    <label for="file2">+</label>
+                    <br>
+                    <h3>{{modelUpload}}</h3>
+    
+                </div> -->
+                <div class="file-img file2">
+                    <img [src]="url" width="100%" alt="preview image">
+                </div>
+
+
+                <div *ngIf="progressBarVisible">
+                    <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
+                </div>
+            </div>
+
+            <div class="preview-image ">
+
+                <!-- <div class="file2">
+    
+                    <input type="file" (change)="upload($event)" id="file2">
+                    <label for="file2">+</label>
+                    <br>
+                    <h3>{{modelUpload}}</h3>
+    
+                </div> -->
+                <div class="file-img file2">
+                    <img [src]="url" width="100%" alt="preview image">
+                </div>
+
+
+                <div *ngIf="progressBarVisible">
+                    <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
+                </div>
+            </div>
+        </div>
+
     </div>
-    
-    <div class="content-div2">
-        <img [src]="url" height="100%"  alt="preview image">
-    </div>    
-</div>
+    <div class="right">
 
+        <form [formGroup]="productForm" (ngSubmit)="onProductUpload()">
+
+            <div class="form-field">
+                <label for="color">Colour</label>
+                <br>
+                <input type="text" id="color" formControlName="color" placeholder="Enter product colour.." required>
+            </div>
+
+            <div class="form-field">
+                <label for="manf">Manufacturer</label>
+                <br>
+                <input type="text" id="manf" formControlName="manufacturer" placeholder="Enter product manufacturer.." required>
+            </div>
+
+            <div class="form-field">
+                <label for="mat">Material</label>
+                <br>
+                <input type="text" id="mat" formControlName="material" placeholder="Enter product material.." required>
+            </div>
+
+            <div class="form-field">
+                <label for="price">Price</label>
+                <br>
+                <input type="text" id="price" formControlName="price" placeholder="Enter product price.." required>
+            </div>
+
+            <div class="form-field">
+                <label for="stock">Stock</label>
+                <br>
+                <input type="text" id="stock" formControlName="stock" placeholder="Enter product stock.." required>
+            </div>
+
+            <div class="form-field">
+                <label for="description">Additional Information (Optional)</label>
+                <br>
+                <input type="textArea" id="description" formControlName="description" placeholder="Enter product additional information..">
+            </div>
+
+        </form>
+
+        <!-- <div>
+            <button (click)="uploadImage()">upload Image</button>
+        </div> -->
+    </div>
+
+
+
+</div>

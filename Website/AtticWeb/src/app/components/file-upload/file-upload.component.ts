@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -9,8 +10,12 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class FileUploadComponent implements OnInit {
 
+  productForm: FormGroup;
+
   path: String="";
   name: String ="";
+
+  modelUpload: string ="Upload 3D Model of the Product";
 
   defaultImage: string="../../../assets/images/np.png";
   url: string=this.defaultImage;
@@ -21,6 +26,16 @@ export class FileUploadComponent implements OnInit {
   constructor(private  firestore:AngularFireStorage) { 
     this.progressBarVisible=false;
 
+    this.productForm = new FormGroup({
+      'color': new FormControl(''),
+      'manufacturer': new FormControl(''),
+      'material': new FormControl(''),
+      'price': new FormControl(''),
+      'stock': new FormControl(''),
+      'description': new FormControl('')
+
+    });
+
   }
 
   ngOnInit(): void {
@@ -29,13 +44,13 @@ export class FileUploadComponent implements OnInit {
 
   upload($event){
     this.progressBarVisible=true;
-
+      
     
 
       this.path=$event.target.files[0];
       this.name=$event.target.files[0].name;
   
-       setTimeout(()=>{
+      setTimeout(()=>{
         this.progressBarVisible=false;
       }, 400);
 
@@ -50,6 +65,8 @@ export class FileUploadComponent implements OnInit {
          else{
            this.url=this.defaultImage;
          }
+
+         this.modelUpload="Model Uploaded";
   }
 
   uploadImage(){
@@ -63,6 +80,10 @@ export class FileUploadComponent implements OnInit {
     this.firestore.upload("/testWeb/"+this.name, this.path );
 
     
+
+  }
+
+  onProductUpload(){
 
   }
 

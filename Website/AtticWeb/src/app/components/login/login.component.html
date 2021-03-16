@@ -1,44 +1,63 @@
+<div class="content" *ngIf="!showContent">
+    <div class="login-main">
 
-<div class="content"*ngIf="!showContent">
-    <div class="img">
-        <img src="../../../assets/images/logo.png"  alt="">
+        <div class="main-img1">
+            <img src="../../../assets/images/logo1.png" width="100%">
+        </div>
+
+        <div class="form">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-card class="login-mat" align="center">
+
+                    <mat-card-header>
+                        <mat-card-title>Sign In</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content fxLayout="column" align="left">
+                        <div class="form-field">
+                            <label for="uname">Username</label>
+                            <br>
+                            <input type="text" id="uname" formControlName="username" placeholder="Your username..">
+                        </div>
+
+                        <br>
+                        <div class="form-field">
+                            <label for="pwd">Username</label>
+                            <br>
+                            <input type="password" id="pwd" formControlName="password" placeholder="Your password..">
+                        </div>
+
+
+                        <mat-error *ngIf="!credentialsValid">
+                            Username or Password is Incorrect.
+                        </mat-error>
+
+                        <br *ngIf="credentialsValid">
+
+
+                    </mat-card-content>
+                    <mat-card-actions align="center">
+                        <button type="submit" mat-raised-button color="primary">Login</button>
+                    </mat-card-actions>
+                </mat-card>
+            </form>
+
+        </div>
+        <div class="new-account">
+            <h3>OR</h3>
+            <h3>New to Attic?</h3>
+            <button class="attic-button">Create an Attic Account</button>
+            <button class="google-button">Sign Up With Google Account</button>
+        </div>
     </div>
 
 
-<div class="login-main" >
-    <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
-    <mat-card class="login-mat" >
-        
-        <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
-        <mat-card-content fxLayout="column">
-            <mat-form-field>
-                <input formControlName="username" type="text"matInput placeholder="Username">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <input formControlName="password" type="password" name="password" type="password" matInput placeholder="password">
-            </mat-form-field>
-            <br>
-            <mat-error *ngIf="!credentialsValid" >
-                    Username or Password is Incorrect.
-            </mat-error>
+    <div class="main-img2">
+        <img src="../../../assets/images/bg-phone.png" alt="attic phone mockup" height="100%">
 
-            <br *ngIf="credentialsValid">
-          
+    </div>
+</div>
 
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button type="submit" mat-raised-button color="primary">Login</button>
-        </mat-card-actions>
-    </mat-card>
-</form>
-</div>
-</div>
 
 <div *ngIf="showContent">
     <app-file-upload></app-file-upload>
 </div>
-
-

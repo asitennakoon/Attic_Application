@@ -1,46 +1,159 @@
-
-
-.root{
-   
+.login-main {
+    position: absolute;
+    width: 40vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background: #FBB80A;
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 44px 44px 0px;
 }
-.content{
 
-    /* background-color:rgba(255,255,255,0.7); */
-    background-color: #febd38;
-    height: 34.1vh;
-    width: 39vw;
+.main-img1 {
+    margin-left: 12vw;
+    width: 15vw;
+}
 
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+form {
+    width: 20vw;
+}
 
+.form {
+    width: 20vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+mat-card {
+    background: #FBB80A;
+    padding: 0 0 1vh 0;
+}
+
+mat-card-content {
+    padding: 0%;
     margin: 0;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
 
-mat-card{
-    border-radius: 0%;
+.mat-card:not([class*=mat-elevation-z]) {
     box-shadow: none;
 }
 
-.login-main{
- 
-  min-width: 300px;
-  width: 20vw;
+mat-card-header {
+    margin: 0%;
+    padding-left: 0%;
+}
+
+mat-card-title {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 2vh;
+    color: #FFFFFF;
+}
+
+mat-card-actions button {
+    background-color: #FFFFFF;
+    color: #FBB80A;
+    text-decoration: none;
+    box-shadow: none;
+    padding: 0%;
+}
+
+.form-field {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.form-field [type=text],
+select,
+[type=password] {
+    width: 100%;
+    min-width: 40px;
+    max-width: 250px;
+    padding: 1vh 2vw 1vh 2vw;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+hr {
+    color: #FFFFFF;
+    background-color: #FFFFFF;
+    stroke-width: 2px;
+}
+
+.new-account {
+    margin-top: 2vh;
+    width: 20vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    border-top: 2px solid #FFFFFF;
+}
+
+.new-account h3 {
+    margin: 0%;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.attic-button {
+    width: 100%;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vh;
+    background-color: #FFFFFF;
+    color: #FBB80A;
+    text-decoration: none;
+    box-shadow: none;
+    padding: 1vh 1vw 1vh 1vw;
+    border-radius: 8px;
+    border: none;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.google-button {
+    background-color: #FF5C5C;
+    color: #FFFFFF;
+    width: 100%;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vh;
+    text-decoration: none;
+    box-shadow: none;
+    padding: 1vh 1vw 1vh 1vw;
+    border-radius: 8px;
+    border: none;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.main-img2 {
+    margin-top: 5vh;
+    text-align: center;
+    width: 60vw;
+    height: 90vh;
     float: right;
- 
-}
-
-img{
-    width: 30vh;
-}
-
-.img{
-    margin-top: 1vw;
-    margin-left: 2vw;
-    float: left;
-    width: 30%;
-    
 }

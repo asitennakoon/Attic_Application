@@ -1,0 +1,46 @@
+.header-main {
+    width: 100vw;
+    background-color: #febd38;
+    height: 15vh;
+}
+
+.current-title {
+    float: left;
+    width: 20vw;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: right;
+    color: #7C5B04;
+    margin-top: 6vh;
+}
+
+.user-account {
+    float: right;
+    width: 60vw;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    text-align: right;
+    color: #7C5B04;
+    margin-top: 4vh;
+}
+
+.membership {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: right;
+    color: #7C5B04;
+    margin-top: 2vh;
+}
+
+.logo {
+    float: right;
+    height: 15vh;
+    margin-right: 3vw;
+    margin-left: 5vw;
+}
