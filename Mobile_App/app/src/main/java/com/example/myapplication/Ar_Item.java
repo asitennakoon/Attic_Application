@@ -1,10 +1,14 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +31,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class Ar_Item extends AppCompatActivity {
+    Dialog productInfo;
+    TextView closeTxt;
+    Button viewBtn;
+    TextView manufacturer;
+    TextView material;
+    TextView color;
+    TextView price;
+    TextView stock;
 //    DrawerLayout drawerLayout;
 //    NavigationView navigationView;
 //    Toolbar toolbar;
@@ -34,6 +46,7 @@ public class Ar_Item extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ar_screen);
+        productInfo = new Dialog(this);
         Toast.makeText(Ar_Item.this, "Showing previews for " + Category.chosenCategory + " categories of " + Camera.predictedClass[1], Toast.LENGTH_SHORT).show();
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
@@ -58,6 +71,7 @@ public class Ar_Item extends AppCompatActivity {
 
         imagesRef.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(ListResult listResult) {
                         /*for (StorageReference prefix : listResult.getPrefixes()) {
@@ -74,21 +88,47 @@ public class Ar_Item extends AppCompatActivity {
                                 // Preview image downloaded directly from StorageReference using Glide
                                 Glide.with(Ar_Item.this).load(item).into(imageView);
 
-                                String objectName = item.getName().substring(0, item.getName().indexOf("."));
-                                StorageReference object = objectsRef.child(objectName + ".glb");
                                 findViewById(imageViews[index]).setOnClickListener(v -> {
-                                    try {
-                                        File file = File.createTempFile(objectName, "glb");
-                                        object.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                                            @Override
-                                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                                buildModel(file);
-                                            }
-                                        });
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+                                    productInfo.setContentView(R.layout.furniture_info_screen);
+                                    closeTxt = (TextView) productInfo.findViewById(R.id.closeTxt);
+                                    viewBtn = (Button) productInfo.findViewById(R.id.viewBtn);
+                                    /*manufacturer = (TextView) findViewById(R.id.manufacturer);
+//                                    manufacturer.setText("Damro");
+                                    material = (TextView) findViewById(R.id.material);
+//                                    material.setText("Leather");
+                                    color = (TextView) findViewById(R.id.color);
+                                    color.setText("Black");
+                                    price = (TextView) findViewById(R.id.price);
+//                                    price.setText("LKR 50,000");
+                                    int remaining = 10;
+                                    stock = (TextView) findViewById(R.id.stock);
+//                                    stock.setText("Only " + remaining + " left in stock");*/
+                                    closeTxt.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            productInfo.dismiss();
+                                        }
+                                    });
+                                    productInfo.show();
+
+                                    String objectName = item.getName().substring(0, item.getName().indexOf("."));
+                                    StorageReference object = objectsRef.child(objectName + ".glb");
+                                    viewBtn.setOnClickListener(v1 -> {
+                                        try {
+                                            File file = File.createTempFile(objectName, "glb");
+                                            object.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                                @Override
+                                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                                    buildModel(file);
+                                                }
+                                            });
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    });
+
                                 });
+
                                 index++;
                             }
                         }
