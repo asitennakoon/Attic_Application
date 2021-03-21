@@ -15,13 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
@@ -34,6 +38,7 @@ public class Ar_Item extends AppCompatActivity {
     Dialog productInfo;
     TextView closeTxt;
     Button viewBtn;
+    ImageView preview;
     TextView manufacturer;
     TextView material;
     TextView color;
@@ -47,7 +52,7 @@ public class Ar_Item extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ar_screen);
         productInfo = new Dialog(this);
-        Toast.makeText(Ar_Item.this, "Showing previews for " + Category.chosenCategory + " categories of " + Camera.predictedClass[1], Toast.LENGTH_SHORT).show();
+        Toast.makeText(Ar_Item.this, "Showing previews for " + Category.chosenCategory + " category of " + Camera.predictedClass[1], Toast.LENGTH_LONG).show();
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
 
@@ -69,16 +74,16 @@ public class Ar_Item extends AppCompatActivity {
         StorageReference imagesRef = storageRef.child("images/" + Camera.predictedClass[1]);
         StorageReference objectsRef = storageRef.child("objects/" + Camera.predictedClass[1]);
 
+        // Created an instance of FirebaseFirestore to access the Cloud Firestore of Attic
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Created a reference to the furniture-info collection
+        CollectionReference collectionRef = db.collection("furniture-info");
+
         imagesRef.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(ListResult listResult) {
-                        /*for (StorageReference prefix : listResult.getPrefixes()) {
-                            // All the prefixes under listRef.
-                            // You may call listAll() recursively on them.
-                        }*/
-
                         int[] imageViews = {R.id.imageView1, R.id.imageView2, R.id.imageView3, R.id.imageView4, R.id.imageView5, R.id.imageView5, R.id.imageView6};
                         int index = 0;
 
@@ -92,17 +97,32 @@ public class Ar_Item extends AppCompatActivity {
                                     productInfo.setContentView(R.layout.furniture_info_screen);
                                     closeTxt = (TextView) productInfo.findViewById(R.id.closeTxt);
                                     viewBtn = (Button) productInfo.findViewById(R.id.viewBtn);
-                                    /*manufacturer = (TextView) findViewById(R.id.manufacturer);
-//                                    manufacturer.setText("Damro");
-                                    material = (TextView) findViewById(R.id.material);
-//                                    material.setText("Leather");
-                                    color = (TextView) findViewById(R.id.color);
-                                    color.setText("Black");
-                                    price = (TextView) findViewById(R.id.price);
-//                                    price.setText("LKR 50,000");
-                                    int remaining = 10;
-                                    stock = (TextView) findViewById(R.id.stock);
-//                                    stock.setText("Only " + remaining + " left in stock");*/
+                                    preview = (ImageView) productInfo.findViewById(R.id.imageView);
+                                    manufacturer = (TextView) productInfo.findViewById(R.id.manufacturer);
+                                    material = (TextView) productInfo.findViewById(R.id.material);
+                                    color = (TextView) productInfo.findViewById(R.id.color);
+                                    price = (TextView) productInfo.findViewById(R.id.price);
+                                    stock = (TextView) productInfo.findViewById(R.id.stock);
+
+                                    String itemName = item.getName().substring(0, item.getName().indexOf("."));
+                                    Glide.with(Ar_Item.this).load(imagesRef.child("previews/" + itemName + ".gif")).into(preview);
+
+                                    collectionRef.document(Camera.predictedClass[1] + "-" + itemName).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists()) {
+                                                    manufacturer.setText(document.getString("manufacturer"));
+                                                    material.setText(document.getString("material"));
+                                                    color.setText(document.getString("color"));
+                                                    price.setText(document.getString("price"));
+                                                    stock.setText("Only " + document.get("stock").toString() + " left in stock");
+                                                }
+                                            }
+                                        }
+                                    });
+
                                     closeTxt.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -111,11 +131,10 @@ public class Ar_Item extends AppCompatActivity {
                                     });
                                     productInfo.show();
 
-                                    String objectName = item.getName().substring(0, item.getName().indexOf("."));
-                                    StorageReference object = objectsRef.child(objectName + ".glb");
+                                    StorageReference object = objectsRef.child(itemName + ".glb");
                                     viewBtn.setOnClickListener(v1 -> {
                                         try {
-                                            File file = File.createTempFile(objectName, "glb");
+                                            File file = File.createTempFile(itemName, "glb");
                                             object.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                                                 @Override
                                                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -124,6 +143,8 @@ public class Ar_Item extends AppCompatActivity {
                                             });
                                         } catch (IOException e) {
                                             e.printStackTrace();
+                                        } finally {
+                                            productInfo.dismiss();
                                         }
                                     });
 
@@ -132,12 +153,6 @@ public class Ar_Item extends AppCompatActivity {
                                 index++;
                             }
                         }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Uh-oh, an error occurred!
                     }
                 });
 
@@ -182,7 +197,7 @@ public class Ar_Item extends AppCompatActivity {
                 .setRegistryId(file.getPath())
                 .build()
                 .thenAccept(modelRenderable -> {
-                    Toast.makeText(this, "Model built", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "3D model built", Toast.LENGTH_SHORT).show();
                     ;
                     renderable = modelRenderable;
                 });

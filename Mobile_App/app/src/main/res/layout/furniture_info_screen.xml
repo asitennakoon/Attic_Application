@@ -18,9 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.699"
-        tools:ignore="MissingConstraints"><![CDATA[>
-
-        ]]>
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/closeTxt"
@@ -66,7 +64,6 @@
                 android:id="@+id/manufacturer"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="Damro"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:translationX="450px"
                 android:translationY="-20px" />
@@ -84,7 +81,6 @@
                 android:id="@+id/material"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="Leather"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:translationX="450px"
                 android:translationY="-43px" />
@@ -102,7 +98,6 @@
                 android:id="@+id/color"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="Black"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:translationX="450px"
                 android:translationY="-66px" />
@@ -120,7 +115,6 @@
                 android:id="@+id/price"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="LKR 50,000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:translationX="450px"
                 android:translationY="-88px" />
@@ -129,7 +123,6 @@
                 android:id="@+id/stock"
                 android:layout_width="263dp"
                 android:layout_height="wrap_content"
-                android:text="Only 10 left in stock"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:translationX="100px"
                 android:translationY="-40px" />

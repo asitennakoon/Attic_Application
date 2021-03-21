@@ -39,6 +39,7 @@ public class Category extends AppCompatActivity  {
         startActivityForResult(loadProductsIntent,0);
         capture_image(view);
         chosenCategory = String.valueOf(view.getContentDescription());
+        Toast.makeText(this,chosenCategory + " category selected", Toast.LENGTH_LONG).show();
     }
 
 

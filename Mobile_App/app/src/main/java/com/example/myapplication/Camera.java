@@ -37,7 +37,7 @@ public class Camera extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeFile(Category.currentImagePath);
         try {
             probabilityOutput = Classifier.create(this, device, numThreads).recognizeImage(bitmap, 0);
-            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_LONG).show();
             String topKProbability = probabilityOutput.get(0).toString();
             predictedClass = topKProbability.split(" ");
             predictedCategoryBtn = (Button) findViewById(R.id.categoryPrediction);
