@@ -1,4 +1,4 @@
-<div class="content" *ngIf="!showContent">
+<div class="content">
     <div class="login-main">
 
         <div class="main-img1">
@@ -6,11 +6,11 @@
         </div>
 
         <div class="form">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
                 <mat-card class="login-mat" align="center">
 
                     <mat-card-header>
-                        <mat-card-title>Sign In</mat-card-title>
+                        <mat-card-title>Set Up an Attic Account</mat-card-title>
                     </mat-card-header>
                     <mat-card-content fxLayout="column" align="left">
                         <div class="form-field">
@@ -19,7 +19,23 @@
                             <input type="text" id="uname" formControlName="username" placeholder="Your username..">
                         </div>
 
-                        <br>
+
+
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <br>
+                            <input type="text" id="email" formControlName="email" placeholder="Your username..">
+                        </div>
+
+
+
+                        <div class="form-field">
+                            <label for="store">Store Name</label>
+                            <br>
+                            <input type="text" id="store" formControlName="storeName" placeholder="Your username..">
+                        </div>
+
+
                         <div class="form-field">
                             <label for="pwd">Password</label>
                             <br>
@@ -27,8 +43,15 @@
                         </div>
 
 
+                        <div class="form-field">
+                            <label for="confirmpwd">Confirm Password</label>
+                            <br>
+                            <input type="password" id="confirmpwd" formControlName="confirmPassword" placeholder="Your password..">
+                        </div>
+
+
                         <mat-error *ngIf="!credentialsValid">
-                            Username or Password is Incorrect.
+                            {{error}}
                         </mat-error>
 
                         <br *ngIf="credentialsValid">
@@ -36,7 +59,7 @@
 
                     </mat-card-content>
                     <mat-card-actions align="center">
-                        <button type="submit" mat-raised-button color="primary">Login</button>
+                        <button type="submit" mat-raised-button color="primary">Sign Up</button>
                     </mat-card-actions>
                 </mat-card>
             </form>
@@ -44,9 +67,9 @@
         </div>
         <div class="new-account">
             <h3>OR</h3>
-            <h3>New to Attic?</h3>
-            <button routerLink="/sign-up" routerLinkActive="true" class="attic-button">Create an Attic Account</button>
-            <button class="google-button">Sign Up With Google Account</button>
+            <h3>Already have an account ?</h3>
+            <button routerLink="" routerLinkActive="true" class="attic-button">Login</button>
+
         </div>
     </div>
 
@@ -55,9 +78,4 @@
         <img src="../../../assets/images/bg-phone.png" alt="attic phone mockup" height="100%">
 
     </div>
-</div>
-
-
-<div *ngIf="showContent">
-    <app-file-upload [user]="user"></app-file-upload>
 </div>
