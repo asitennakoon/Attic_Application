@@ -15,7 +15,7 @@ import { IAccount } from '../../Interfaces/IAccount';
 export class LoginComponent implements OnInit {
 
   public accounts:IAccount[]=[];
-
+  user: IAccount;
   
   public credentialsValid=true;
   public showContent=false;
@@ -56,6 +56,8 @@ export class LoginComponent implements OnInit {
           && this.loginForm.value.password==account.password
           ){
             this.credentialsValid=true;
+            this.user=account;
+            console.log(this.user);
             this.showContent=true;
             return;
           }

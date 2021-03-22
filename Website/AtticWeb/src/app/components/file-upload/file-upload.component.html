@@ -1,5 +1,5 @@
 <div class="header">
-    <app-header></app-header>
+    <app-header [details]="header"></app-header>
 
 </div>
 
@@ -12,76 +12,93 @@
 
             <div class="file1">
 
-                <input type="file" (change)="upload($event)" id="file1">
+                <input type="file" (change)="uploadModel($event)" id="file1">
                 <label for="file1">+</label>
                 <br>
-                <h3>{{modelUpload}}</h3>
+                <h3 id="modelMsg">{{modelUpload}}</h3>
 
             </div>
 
-            <div *ngIf="progressBarVisible">
+            <!-- <div *ngIf="progressBarVisible">
                 <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
-            </div>
+            </div> -->
         </div>
 
 
         <div class="preview">
             <div class="preview-image mar-right">
 
-                <!-- <div class="file2">
-    
-                    <input type="file" (change)="upload($event)" id="file2">
+                <div class="file2" *ngIf="!preview1Uploaded">
+
+                    <input type="file" (change)="uploadImage1($event)" id="file2">
                     <label for="file2">+</label>
                     <br>
-                    <h3>{{modelUpload}}</h3>
-    
-                </div> -->
-                <div class="file-img file2">
-                    <img [src]="url" width="100%" alt="preview image">
+                    <h3>Preview Image</h3>
+
+                </div>
+                <div class="file-img file2" *ngIf="preview1Uploaded">
+                    <div class="image">
+                        <img [src]="image1Url" width="100%" alt="preview image">
+                    </div>
+                    <br>
+                    <button class="reset" (click)="preview1Uploaded=false">Reset Image</button>
                 </div>
 
 
-                <div *ngIf="progressBarVisible">
-                    <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
-                </div>
+
             </div>
 
             <div class="preview-image ">
 
-                <!-- <div class="file2">
-    
-                    <input type="file" (change)="upload($event)" id="file2">
-                    <label for="file2">+</label>
+                <div class="file2" *ngIf="!preview2Uploaded">
+
+                    <input type="file" (change)="uploadImage2($event)" id="file3">
+                    <label for="file3">+</label>
                     <br>
-                    <h3>{{modelUpload}}</h3>
-    
-                </div> -->
-                <div class="file-img file2">
-                    <img [src]="url" width="100%" alt="preview image">
+                    <h3>Gif Image</h3>
+
+                </div>
+                <div class="file-img file2" *ngIf="preview2Uploaded">
+                    <div class="image">
+                        <img [src]="image2Url" width="100%" alt="preview image">
+                    </div>
+                    <br>
+                    <button class="reset" (click)="preview2Uploaded=false">Reset Image</button>
                 </div>
 
-
-                <div *ngIf="progressBarVisible">
-                    <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
-                </div>
             </div>
         </div>
 
     </div>
     <div class="right">
 
+        <h1>Furniture Details</h1>
+        <hr>
+
         <form [formGroup]="productForm" (ngSubmit)="onProductUpload()">
+
+            <div class="form-field">
+                <label for="type">Scene Type</label>
+                <br>
+                <select formControlName="sceneTypes">
+                    <option disabled> Select Scene Type</option>
+                    <option *ngFor="let type of sceneTypes"  value={{type}}>{{type}}</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+                <label for="type">Furniture Type</label>
+                <br>
+                <select formControlName="furnituretypes">
+                    <option disabled  > Select Furniture Type</option>
+                    <option *ngFor="let type of furnituretypes"  value={{type}}>{{type}}</option>
+              </select>
+            </div>
 
             <div class="form-field">
                 <label for="color">Colour</label>
                 <br>
                 <input type="text" id="color" formControlName="color" placeholder="Enter product colour.." required>
-            </div>
-
-            <div class="form-field">
-                <label for="manf">Manufacturer</label>
-                <br>
-                <input type="text" id="manf" formControlName="manufacturer" placeholder="Enter product manufacturer.." required>
             </div>
 
             <div class="form-field">
@@ -105,15 +122,23 @@
             <div class="form-field">
                 <label for="description">Additional Information (Optional)</label>
                 <br>
-                <input type="textArea" id="description" formControlName="description" placeholder="Enter product additional information..">
+                <textarea id="description" name="description" formControlName="description" placeholder="Enter product additional information.."></textarea>
+            </div>
+            <hr>
+            <div class="btn">
+                <button class="upload">Upload Image</button>
             </div>
 
         </form>
+        <div class="btn">
+            <button class="cancel" [routerLink]=" " routerLinkActive="active">Discard Item</button>
+        </div>
 
-        <!-- <div>
-            <button (click)="uploadImage()">upload Image</button>
-        </div> -->
+
+
+
     </div>
+
 
 
 

@@ -116,9 +116,12 @@ mat-progress-bar {
 }
 
 .right {
-    margin-left: 5vw;
-    width: 35vw;
+    margin-left: 10vw;
+    width: 27vw;
+    height: 75vh;
     float: left;
+    overflow-y: scroll;
+    padding-right: 3vw;
 }
 
 .form-field {
@@ -126,16 +129,17 @@ mat-progress-bar {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #A17502;
+    margin-bottom: 2vh;
 }
 
 .form-field [type=text],
 select,
-[type=password] {
+textarea [type=password] {
     width: 100%;
     min-width: 40px;
     max-width: 250px;
-    padding: 1vh 2vw 1vh 2vw;
+    padding: 1vh 1vw 1vh 1vw;
     margin-top: 1vh;
     margin-left: auto;
     margin-right: auto;
@@ -147,4 +151,113 @@ select,
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
+}
+
+textarea {
+    margin-top: 2vh;
+    width: 100%;
+    max-width: 250px;
+    height: 8vh;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    padding: 1vh 1vw 1vh 1vw;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+h1 {
+    color: #A17502;
+    text-align: center;
+}
+
+
+/*Scroll bar width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/*Scroll bar  Track */
+
+ ::-webkit-scrollbar-track {
+    border: 1px solid #A17502;
+    border-radius: 10px;
+}
+
+
+/*Scroll bar  Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #febd38;
+    border-radius: 10px;
+}
+
+
+/*Scroll bar Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #febd38;
+}
+
+.reset {
+    background-color: #febd38;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1vh 1vw 1vh 1vw;
+    margin-top: 3vh;
+    cursor: pointer;
+}
+
+.reset:hover {
+    background-color: #FF5C5C;
+}
+
+.image {
+    margin: 1vh 3vw 1vh 1vw;
+    width: 10vw;
+    height: 8vh;
+}
+
+.image img {
+    text-align: center;
+}
+
+.upload {
+    width: 8vw;
+    padding: 1.2vh 1vw 1.2vh 1vw;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #febd38;
+    font-size: 2vh;
+    border-radius: 0.5vh;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel {
+    width: 8vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 1vh 1vw 1vh 1vw;
+    text-align: center;
+    color: #A17502;
+    background-color: #FFFFFF;
+    font-size: 2vh;
+    border-radius: 0.5vh;
+    border: 0.2vh solid #A17502;
+    cursor: pointer;
+}
+
+.btn {
+    text-align: center;
 }

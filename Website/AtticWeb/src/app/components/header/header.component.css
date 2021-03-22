@@ -13,12 +13,13 @@
     font-size: 30px;
     text-align: right;
     color: #7C5B04;
-    margin-top: 6vh;
+    margin-top: 4vh;
+    line-height: 30px;
 }
 
 .user-account {
     float: right;
-    width: 60vw;
+    width: 50vw;
     font-family: Poppins;
     font-style: normal;
     font-weight: 800;
