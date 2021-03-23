@@ -52,6 +52,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import { FurnitureViewComponent } from './components/furniture-view/furniture-view.component';
+import { ViewProductsComponent } from './components/view-products/view-products.component';
 
 
 
@@ -63,6 +65,8 @@ import { HeaderComponent } from './components/header/header.component';
     routingComponents,
     FileUploadComponent,
     HeaderComponent,
+    FurnitureViewComponent,
+  
   ],
   imports: [
     BrowserModule,

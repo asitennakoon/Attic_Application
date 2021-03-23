@@ -85,7 +85,7 @@ export class FileUploadComponent implements OnInit {
 
   uploadModel($event) {
     
-    console.log((this.user as IAccount))
+    console.log((this.user as IAccount)) ;
 
     // this.progressBarVisible=true;
 

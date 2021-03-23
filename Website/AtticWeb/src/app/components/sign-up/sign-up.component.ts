@@ -92,6 +92,7 @@ export class SignUpComponent implements OnInit {
      if(!this.passwordValid()){
       this.error ="Passwords doesn't match ! "
       this.credentialsValid = false;
+      return;
      }
     }
       this.error ="Invalid email address ! "

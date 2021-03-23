@@ -7,7 +7,7 @@ import { IFurniture } from 'src/app/Interfaces/IFurniture';
 })
 export class FirestoreService {
 
-  furnitures: IFurniture[] = [];
+  furnitures: IFurniture[]=[];
   scenes: string[] = [];
   types: string[] = [];
 
@@ -20,31 +20,39 @@ export class FirestoreService {
   getFurnitures() {
     this.furnitures = [];
 
-    this.firestore.collection<IFurniture>('furniture-info').snapshotChanges().subscribe(data => {
-      data.forEach(furnituresnap => {
-        let furniture = <IFurniture>furnituresnap.payload.doc.data();
-
-        if (furnituresnap.payload.doc.id) {
-          furniture.$key = furnituresnap.payload.doc.id;
-         
-
-          let inTheList: boolean = false;
-          this.furnitures.forEach(f =>{
-            if(this.equals(f,furniture)){
-              inTheList=true;
+      this.firestore.collection<IFurniture>('furniture-info').snapshotChanges().subscribe(data => {
+        
+        data.forEach(furnituresnap => {
+          let furniture = <IFurniture>furnituresnap.payload.doc.data();
+  
+          if (furnituresnap.payload.doc.id) {
+            furniture.$key = furnituresnap.payload.doc.id;
+           
+  
+            let inTheList: boolean = false;
+            this.furnitures.forEach(f =>{
+              if(this.equals(f,furniture)){
+                inTheList=true;
+              }
+            });
+  
+            if (!inTheList) {
+              this.furnitures.push(furniture);
             }
-          });
-
-          if (!inTheList) {
-            this.furnitures.push(furniture);
           }
-        }
-      });
+        });
+    
+ 
+
       this.getSceneTypes()
       this.getFurnitureTypes()
+      
 
     });
     console.log(this.furnitures)
+    return this.furnitures;
+  
+    
   }
 
   getSceneTypes() {
@@ -73,6 +81,7 @@ export class FirestoreService {
 
 
   getExistingCount(scene: string, type: string){
+
     
     let selectedFurnitures: IFurniture[]=[];
     
@@ -117,6 +126,7 @@ export class FirestoreService {
   // updateFurniture($key:string, furniture: IFurniture){
   //   this.firestore.collection('furniture-info').
   // }
+
 
 
 
