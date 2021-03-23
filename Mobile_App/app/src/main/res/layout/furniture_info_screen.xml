@@ -1,146 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="475dp"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:orientation="vertical"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/previewImg"
+        android:layout_width="230dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/preview_for_funiture_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699"
-        tools:ignore="MissingConstraints">
+        app:srcCompat="@drawable/splash_1" />
 
-        <TextView
-            android:id="@+id/closeTxt"
-            android:layout_width="29dp"
-            android:layout_height="32dp"
-            android:layout_gravity="end"
-            android:gravity="center"
-            android:text="X"
-            android:textStyle="bold"
-            android:translationX="-20px"
-            android:translationY="-20px"
-            tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/manufacturer"
+        app:layout_constraintStart_toStartOf="@+id/previewImg"
+        app:layout_constraintTop_toBottomOf="@+id/previewImg" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="162dp"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/material"
+        app:layout_constraintStart_toStartOf="@+id/previewImg"
+        app:layout_constraintTop_toBottomOf="@+id/manufacturer" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="252dp"
-                android:layout_height="wrap_content"
-                android:translationX="100px"
-                android:translationY="30px"
-                app:srcCompat="@drawable/splash_1" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/color"
+        app:layout_constraintStart_toStartOf="@+id/previewImg"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/price"
+        app:layout_constraintStart_toStartOf="@+id/previewImg"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Manufacturer:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="100px"
-                android:translationY="50px" />
+    <TextView
+        android:id="@+id/stock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/price"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-            <TextView
-                android:id="@+id/manufacturer"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="450px"
-                android:translationY="-20px" />
+    <TextView
+        android:id="@+id/manufacturer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/previewImg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/previewImg" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="112dp"
-                android:layout_height="wrap_content"
-                android:text="Material: "
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="100px"
-                android:translationY="30px" />
+    <TextView
+        android:id="@+id/material"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/previewImg"
+        app:layout_constraintStart_toStartOf="@+id/manufacturer"
+        app:layout_constraintTop_toBottomOf="@+id/manufacturer" />
 
-            <TextView
-                android:id="@+id/material"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="450px"
-                android:translationY="-43px" />
+    <TextView
+        android:id="@+id/color"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/material"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/manufacturer"
+        app:layout_constraintTop_toBottomOf="@+id/material" />
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="112dp"
-                android:layout_height="wrap_content"
-                android:text="Color: "
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="100px"
-                android:translationY="5px" />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/color"
+        app:layout_constraintStart_toStartOf="@+id/manufacturer"
+        app:layout_constraintTop_toBottomOf="@+id/color" />
 
-            <TextView
-                android:id="@+id/color"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="450px"
-                android:translationY="-66px" />
+    <Button
+        android:id="@+id/viewBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/stock"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/stock"
+        app:layout_constraintTop_toBottomOf="@+id/stock" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="111dp"
-                android:layout_height="wrap_content"
-                android:text="Price: "
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="100px"
-                android:translationY="-18px" />
-
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="450px"
-                android:translationY="-88px" />
-
-            <TextView
-                android:id="@+id/stock"
-                android:layout_width="263dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:translationX="100px"
-                android:translationY="-40px" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/viewBtn"
-                android:layout_width="263dp"
-                android:layout_height="wrap_content"
-                android:text="View"
-                android:translationX="100px" />
-        </LinearLayout>
-
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/closeBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:text="@string/close"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/previewImg"
+        app:layout_constraintStart_toEndOf="@+id/previewImg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

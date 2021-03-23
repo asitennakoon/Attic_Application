@@ -24,7 +24,7 @@ public class Camera extends AppCompatActivity {
     private Classifier.Device device = Classifier.Device.CPU;
     private int numThreads = -1;
     private Integer sensorOrientation;
-    List<Classifier.Recognition> probabilityOutput;
+    static List<Classifier.Recognition> probabilityOutput;
     static String[] predictedClass;
 //    public static String currentImagePath = null;
 //    private static final int IMAGE_REQUEST = 1;

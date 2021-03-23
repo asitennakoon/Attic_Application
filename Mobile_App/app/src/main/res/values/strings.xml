@@ -17,4 +17,11 @@
     <string name="view_captured_image">View Captured Image</string>
     <string name="what_are_you_looking_for">What are you looking for?</string>
     <string name="office_furniture">Office Furniture</string>
+    <string name="close">X</string>
+    <string name="preview_for_funiture_item">preview for funiture item</string>
+    <string name="manufacturer">Manufacturer:</string>
+    <string name="material">Material:</string>
+    <string name="color">Color:</string>
+    <string name="price">Price:</string>
+    <string name="view">View</string>
 </resources>
