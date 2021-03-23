@@ -35,8 +35,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Ar_Item extends AppCompatActivity {
+    ImageView thumbnail;
     Dialog productInfo;
-    TextView closeTxt;
+    Button closeBtn;
     Button viewBtn;
     ImageView preview;
     TextView manufacturer;
@@ -89,15 +90,18 @@ public class Ar_Item extends AppCompatActivity {
 
                         for (StorageReference item : listResult.getItems()) {
                             if (item.getName().contains(Category.chosenCategory)) {
-                                ImageView imageView = findViewById(imageViews[index]);
+                                thumbnail = findViewById(imageViews[index]);
                                 // Preview image downloaded directly from StorageReference using Glide
-                                Glide.with(Ar_Item.this).load(item).into(imageView);
+                                Glide.with(Ar_Item.this).load(item).into(thumbnail);
 
                                 findViewById(imageViews[index]).setOnClickListener(v -> {
                                     productInfo.setContentView(R.layout.furniture_info_screen);
-                                    closeTxt = (TextView) productInfo.findViewById(R.id.closeTxt);
+                                    /*Window window = productInfo.getWindow();
+                                    window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    window.setGravity(Gravity.CENTER);*/
+                                    closeBtn = (Button) productInfo.findViewById(R.id.closeBtn);
                                     viewBtn = (Button) productInfo.findViewById(R.id.viewBtn);
-                                    preview = (ImageView) productInfo.findViewById(R.id.imageView);
+                                    preview = (ImageView) productInfo.findViewById(R.id.previewImg);
                                     manufacturer = (TextView) productInfo.findViewById(R.id.manufacturer);
                                     material = (TextView) productInfo.findViewById(R.id.material);
                                     color = (TextView) productInfo.findViewById(R.id.color);
@@ -123,7 +127,7 @@ public class Ar_Item extends AppCompatActivity {
                                         }
                                     });
 
-                                    closeTxt.setOnClickListener(new View.OnClickListener() {
+                                    closeBtn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
                                             productInfo.dismiss();
