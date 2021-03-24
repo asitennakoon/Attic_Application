@@ -27,8 +27,7 @@ public class Category extends AppCompatActivity  {
     public static final int IMAGE_REQUEST_CODE = 102;
     public static String currentImagePath = null;
     private static final int IMAGE_REQUEST = 1;
-    // Hardcoded for testing purposes
-    static String chosenCategory = "Table & Chair";
+    static String chosenCategory;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +38,8 @@ public class Category extends AppCompatActivity  {
         Intent loadProductsIntent = new Intent(view.getContext(), Camera.class);
         startActivityForResult(loadProductsIntent,0);
         capture_image(view);
+        chosenCategory = String.valueOf(view.getContentDescription());
+        Toast.makeText(this,chosenCategory + " category selected", Toast.LENGTH_LONG).show();
     }
 
 

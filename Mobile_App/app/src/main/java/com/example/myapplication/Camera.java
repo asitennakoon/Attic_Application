@@ -1,30 +1,18 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class Camera extends AppCompatActivity {
@@ -36,8 +24,8 @@ public class Camera extends AppCompatActivity {
     private Classifier.Device device = Classifier.Device.CPU;
     private int numThreads = -1;
     private Integer sensorOrientation;
-    List<Classifier.Recognition> probabilityOutput;
-    static String predictedClass;
+    static List<Classifier.Recognition> probabilityOutput;
+    static String[] predictedClass;
 //    public static String currentImagePath = null;
 //    private static final int IMAGE_REQUEST = 1;
 
@@ -48,11 +36,12 @@ public class Camera extends AppCompatActivity {
 
         Bitmap bitmap = BitmapFactory.decodeFile(Category.currentImagePath);
         try {
-            probabilityOutput = Classifier.create(this,device,numThreads).recognizeImage(bitmap,0);
-//            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_SHORT).show();
-            predictedClass = probabilityOutput.get(0).toString();
-            predictedCategoryBtn= (Button)findViewById(R.id.categoryPrediction);
-            predictedCategoryBtn.setText("Background Image Category - " + predictedClass);
+            probabilityOutput = Classifier.create(this, device, numThreads).recognizeImage(bitmap, 0);
+            Toast.makeText(this, probabilityOutput.toString(), Toast.LENGTH_LONG).show();
+            String topKProbability = probabilityOutput.get(0).toString();
+            predictedClass = topKProbability.split(" ");
+            predictedCategoryBtn = (Button) findViewById(R.id.categoryPrediction);
+            predictedCategoryBtn.setText("Attic's Prediction - " + String.valueOf(predictedClass[1]) + " " + String.valueOf(predictedClass[2]));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,19 +53,17 @@ public class Camera extends AppCompatActivity {
     }
 
 
-
     //navigate back to category screen
-    public void gobackCategory(View view){
+    public void gobackCategory(View view) {
         Intent loadProductsIntent = new Intent(view.getContext(), MainActivity.class);
-        startActivityForResult(loadProductsIntent,0);
+        startActivityForResult(loadProductsIntent, 0);
     }
 
     //navigate foward to ar screen from screen btn
-    public void navigateToAr(View view){
-        Intent loadARIntent = new Intent(view.getContext(), Ar_item.class);
-        startActivityForResult(loadARIntent,0);
+    public void navigateToAr(View view) {
+        Intent loadARIntent = new Intent(view.getContext(), Ar_Item.class);
+        startActivityForResult(loadARIntent, 0);
     }
-
 
 
     //capture background image
@@ -103,15 +90,14 @@ public class Camera extends AppCompatActivity {
 //    }
 
     //display background image for the user
-    public void display_image(View view){
-        Intent loadImageIntent = new Intent(view.getContext(),Image_View.class);
-        startActivityForResult(loadImageIntent,0);
+    public void display_image(View view) {
+        Intent loadImageIntent = new Intent(view.getContext(), Image_View.class);
+        startActivityForResult(loadImageIntent, 0);
 
 //        Bitmap bitmap = BitmapFactory.decodeFile(currentImagePath);
 //        capturedImage.setImageBitmap(bitmap);
 //        btnCamera.setText(currentImagePath);
     }
-
 
 
     //get the image file from the device storage
