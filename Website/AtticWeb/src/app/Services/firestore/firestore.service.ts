@@ -49,7 +49,7 @@ export class FirestoreService {
       
 
     });
-    console.log(this.furnitures)
+    // console.log(this.furnitures)
     return this.furnitures;
   
     

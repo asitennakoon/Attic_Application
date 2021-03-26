@@ -12,9 +12,17 @@ constructor(private storage: AngularFireStorage) { }
     this.storage.upload(filename,path);
   }
 
-  getFromStore(path: string){
-    return this.storage.ref(firebaseConfig.storageBucket+"/images").child(path);
-  }
+  // async getFromStore(path: string){
+  //   let url ="gs://attic-b6655.appspot.com/images/Bedroom/Chair0.png";
+  //   // return this.storage.refFromURL(url).getDownloadURL()
+  //   let l
+  //    this.storage.refFromURL(url).getDownloadURL().subscribe(link => {
+  //     l = link;
+  //     console.log(l);
+  //     return l;
+  //   });
+  //   return l;
+  // }
 
 }
 

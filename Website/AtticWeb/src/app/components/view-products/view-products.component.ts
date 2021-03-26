@@ -16,33 +16,50 @@ export class ViewProductsComponent implements OnInit {
   header;
   path: string="";
   furnitures: IFurniture[] =this.firestore.getFurnitures();
-  storeFurniture: IFurniture[] = [];
-
-  notEmpty:boolean = false;
+  storeFurniture: IFurniture[] = []
 
 
   constructor(private firestore: FirestoreService) {
     this.furnitures=this.firestore.getFurnitures();
+    
    }
 
   ngOnInit() {
     this.header = {title: "VIEW PRODUCTS",account: this.user}
     
-    console.log(this.furnitures)
-    // if(this.furnitures != []){
-      this.notEmpty =true;
-      this.getStoreFurniture();
-      console.log(this.storeFurniture);
-    // }
+    // console.log(this.furnitures)
+      this.storeFurniture =this.getStoreFurniture();
+      // console.log(this.storeFurniture)
+
 
   }
 
   getStoreFurniture(){
-    this.furnitures.forEach(furniture=>{
-      if(furniture.manufacturer == this.user.store){
-        this.storeFurniture.push(furniture)
-      }
-    })
+    this.furnitures=this.firestore.getFurnitures();
+
+    let furnitures1: IFurniture[] = [];
+    // console.log(this.furnitures)
+    let furnitures2: IFurniture[] = this.furnitures;
+
+    // console.log(this.user.store)
+    // console.log(furnitures2.length)
+
+    let user = this.user;
+    
+    setTimeout(function(){
+      for(let furniture of furnitures2){
+
+        console.log("inside for")
+        if(furniture.manufacturer == user.store){
+          furnitures1.push(furniture);
+          console.log(furniture);
+        }
+      };
+    }, 500);
+    
+
+    return furnitures1;
+
   }
 
 

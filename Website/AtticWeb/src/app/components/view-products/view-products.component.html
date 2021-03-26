@@ -1,10 +1,9 @@
 <app-header [details]="header"></app-header>
 
-<div *ngIf="notEmpty">
 
-    <div *ngFor="let f of furnitures">
-        <h1>{{f}}</h1>
-        <app-furniture-view furniture={{f}}></app-furniture-view>
 
-    </div>
+<div *ngFor="let f of storeFurniture">
+    <h1>{{f.manufacturer}}</h1>
+    <app-furniture-view [furniture]="f"></app-furniture-view>
+
 </div>

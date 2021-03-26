@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { IFurniture } from 'src/app/Interfaces/IFurniture';
 import { StorageService } from 'src/app/Services/storage/storage.service';
 
@@ -11,18 +12,42 @@ export class FurnitureViewComponent implements OnInit {
 
   @Input() furniture!: IFurniture;
 
-  url: string = "";
+  url = "../../../assets/images/1.png";
 
-  
-  constructor(private storage: StorageService) {
-    console.log(this.furniture)
-   }
 
-  ngOnInit() {
-    console.log(this.furniture)
-    let startIndex = this.furniture.scene.length + Number(2) +this.furniture.type.length;
-    var url1 ="/"+this.furniture.scene+"/" + this.furniture.type + Number(this.furniture.$key.substring(startIndex));
-    this.url=this.storage.getFromStore(url1)
+  constructor(private storage: StorageService, private storage1: AngularFireStorage) {
+
+  }
+
+  async ngOnInit() {
+
+    console.log(this.furniture.manufacturer)
+    if (this.furniture != undefined) {
+      let f: IFurniture = this.furniture;
+      // console.log(f.manufacturer)
+      let startIndex = f.scene.length + Number(2) + f.type.length;
+
+      var url1 = "/" + f.scene + "/" + f.type + Number(f.$key.substring(startIndex)) + ".png";
+      console.log(url1)
+
+      await this.getFromStore(url1).subscribe(data=>{
+        this.url =data;
+        console.log(data);
+      });
+
+      // console.log(this.url)
+    }
+
+  }
+
+
+
+   getFromStore(path: string){
+    let url ="gs://attic-b6655.appspot.com/images" +path;
+   
+    return  this.storage1.refFromURL(url).getDownloadURL()
+    
+   
   }
 
 }
