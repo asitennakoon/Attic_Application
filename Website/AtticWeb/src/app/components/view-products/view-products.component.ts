@@ -12,7 +12,7 @@ export class ViewProductsComponent implements OnInit {
 
   @Input() user!: IAccount;
 
-
+  addProduct: boolean;
   header;
   path: string="";
   furnitures: IFurniture[] =this.firestore.getFurnitures();
@@ -29,6 +29,7 @@ export class ViewProductsComponent implements OnInit {
     
     // console.log(this.furnitures)
       this.storeFurniture =this.getStoreFurniture();
+      this.addProduct=false;
       // console.log(this.storeFurniture)
 
 
@@ -60,6 +61,11 @@ export class ViewProductsComponent implements OnInit {
 
     return furnitures1;
 
+  }
+
+
+  onAddProductClick(){
+    this.addProduct = true;
   }
 
 

@@ -25,7 +25,7 @@ export class FurnitureViewComponent implements OnInit {
     if (this.furniture != undefined) {
       let f: IFurniture = this.furniture;
       // console.log(f.manufacturer)
-      let startIndex = f.scene.length + Number(2) + f.type.length;
+      let startIndex = f.scene.length + Number(1) + f.type.length;
 
       var url1 = "/" + f.scene + "/" + f.type + Number(f.$key.substring(startIndex)) + ".png";
       console.log(url1)

@@ -1,0 +1,39 @@
+.content {
+    padding-top: 10vh;
+    height: 60vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+.add-btn {}
+
+.add-btn label {
+    float: right;
+    font-size: 1.3vw;
+    color: #A17502;
+    padding: 0.8vw 0vw 0.6vw 1vw;
+    margin-right: 8vw;
+}
+
+.add-btn button {
+    font-size: 1.5vw;
+    border-radius: 4rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.6vw 1vw 0.6vw 1vw;
+    background-color: #febd38;
+    border: none;
+    margin-right: 0vw;
+    cursor: pointer;
+    float: right;
+}

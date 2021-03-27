@@ -1,9 +1,21 @@
-<app-header [details]="header"></app-header>
+<div *ngIf="!addProduct">
+    <app-header [details]="header"></app-header>
+
+    <div class="content">
+        <div *ngFor="let f of storeFurniture">
+            <app-furniture-view [furniture]="f"></app-furniture-view>
+        </div>
+    </div>
+
+    <div class="add-btn">
+        <label for="btn">Add Product</label>
+        <button id="btn" (click)="onAddProductClick()">+</button>
+    </div>
 
 
+</div>
 
-<div *ngFor="let f of storeFurniture">
-    <h1>{{f.manufacturer}}</h1>
-    <app-furniture-view [furniture]="f"></app-furniture-view>
 
+<div *ngIf="addProduct">
+    <app-file-upload [user]="user"></app-file-upload>
 </div>

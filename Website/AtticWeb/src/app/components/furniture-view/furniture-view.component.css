@@ -1,0 +1,68 @@
+.container {
+    margin-bottom: 5vh;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    width: 20vw;
+    height: 55vh;
+    background: #FFFFFF;
+    box-shadow: 3px 6px 20px rgba(0, 0, 0, 0.14);
+    border-radius: 1.2vw;
+    float: left;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0.4vw;
+    /* Remove scrollbar space */
+    background: #febd38;
+    /* Optional: just make scrollbar invisible */
+}
+
+.data {
+    margin-top: 2vh;
+    height: 25vh;
+}
+
+.img {
+    margin-top: 2vh;
+    background: #FFFFFF;
+}
+
+.img img {
+    width: 8vw;
+    text-align: center;
+    margin-left: 3.5vw;
+    margin-right: 3.5vw;
+    max-height: 15vh;
+}
+
+.img,
+.heading,
+.content {
+    width: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description {
+    overflow-y: scroll;
+    height: 10vh;
+}
+
+h1,
+h2 {
+    color: #A17502;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.3vw;
+    margin: 0 0 1vh 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 1vw;
+    margin: 0;
+    padding: 0;
+}

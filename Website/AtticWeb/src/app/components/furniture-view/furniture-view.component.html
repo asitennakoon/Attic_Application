@@ -1,8 +1,36 @@
-<img src={{url}} alt="" width="10%">
+<div class="container">
+    <div class="img">
+        <img src={{url}} alt="">
+    </div>
 
-<h1>{{this.furniture.$key}}</h1>
-<h1>{{this.furniture.material}}</h1>
-<h2>{{this.furniture.colour}}</h2>
-<h2>{{this.furniture.description}}</h2>
-<h2>{{this.furniture.price}}</h2>
-<h2>{{this.furniture.stock}}</h2>
+
+
+    <div class="data">
+        <div class="heading">
+            <h1>{{this.furniture.$key}}</h1>
+
+        </div>
+
+        <div class="content">
+            <h2>Material -&nbsp; {{this.furniture.material}}</h2>
+        </div>
+
+        <div class="content">
+            <h2>Colour -&nbsp; {{this.furniture.colour}}</h2>
+        </div>
+
+        <div class="content description">
+            <h2>Description -&nbsp;{{this.furniture.description}}</h2>
+        </div>
+
+        <div class="content">
+            <h2>Price -&nbsp;{{this.furniture.price}}</h2>
+        </div>
+
+        <div class="content">
+            <h2>Stock -&nbsp;{{this.furniture.stock}}</h2>
+        </div>
+    </div>
+
+
+</div>
