@@ -26,6 +26,7 @@ public class Category extends AppCompatActivity  {
     public static final int CAMERA_PERM_CODE = 101;
     public static final int IMAGE_REQUEST_CODE = 102;
     public static String currentImagePath = null;
+    public static String secondImagePath = null;
     private static final int IMAGE_REQUEST = 1;
     static String chosenCategory;
 
@@ -38,19 +39,31 @@ public class Category extends AppCompatActivity  {
         Intent loadProductsIntent = new Intent(view.getContext(), Camera.class);
         startActivityForResult(loadProductsIntent,0);
         capture_image(view);
+//        openSecondCamera();
         chosenCategory = String.valueOf(view.getContentDescription());
         Toast.makeText(this,chosenCategory + " category selected", Toast.LENGTH_LONG).show();
     }
 
 
-    //get the image file from the device storage
+//    get the image file from the device storage
     public File getImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageName = "attic_"+timeStamp+"_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
         File imageFile = File.createTempFile(imageName,".jpg",storageDir);
         currentImagePath = imageFile.getAbsolutePath();
+        return imageFile;
+    }
+
+
+//    get second image file
+    public File getSecondImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String image2Name = "attic_"+timeStamp+"_2";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        File imageFile = File.createTempFile(image2Name,".jpg",storageDir);
+        secondImagePath = imageFile.getAbsolutePath();
         return imageFile;
     }
 
@@ -63,6 +76,7 @@ public class Category extends AppCompatActivity  {
             ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
         }else {
             openCamera();
+            openSecondCamera();
         }
     }
 
@@ -71,6 +85,7 @@ public class Category extends AppCompatActivity  {
         if(requestCode==CAMERA_PERM_CODE){
             if(grantResults.length > 0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 openCamera();
+                openSecondCamera();
             }else {
                 Toast.makeText(this,"Application need camera permission",Toast.LENGTH_SHORT).show();
             }
@@ -81,10 +96,8 @@ public class Category extends AppCompatActivity  {
     public void openCamera(){
         //Toast.makeText(this, "Camera open request", Toast.LENGTH_SHORT).show();
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         if(cameraIntent.resolveActivity(getPackageManager())!=null){
             File imageFile = null;
-
             try {
                 imageFile = getImageFile();
             } catch (IOException e) {
@@ -92,15 +105,32 @@ public class Category extends AppCompatActivity  {
             }
 
             //Toast.makeText(this,"File created",Toast.LENGTH_SHORT).show();
-
             if( imageFile!=null ){
                 Uri imageUri = FileProvider.getUriForFile(this,"com.example.myapplication.fileprovider",imageFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
                 startActivityForResult(cameraIntent, IMAGE_REQUEST_CODE);
-
             }
         }
+    }
 
+
+    public void openSecondCamera(){
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(cameraIntent.resolveActivity(getPackageManager())!=null){
+            File imageFile = null;
+            try {
+                imageFile = getSecondImageFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //Toast.makeText(this,"File created",Toast.LENGTH_SHORT).show();
+            if( imageFile!=null ){
+                Uri imageUri = FileProvider.getUriForFile(this,"com.example.myapplication.fileprovider",imageFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                startActivityForResult(cameraIntent, IMAGE_REQUEST_CODE);
+            }
+        }
     }
 
 }

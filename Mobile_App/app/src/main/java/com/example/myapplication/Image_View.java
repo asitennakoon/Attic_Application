@@ -18,9 +18,15 @@ public class Image_View extends AppCompatActivity {
 
     public void displayCapturedImage(){
         ImageView capturedImage = findViewById(R.id.camera_feed);
+        //
+//        ImageView capturedImage2 = findViewById(R.id.camera_feed2);
 
         Bitmap bitmap = BitmapFactory.decodeFile(Category.currentImagePath);
+        //
+//        Bitmap bitmap2 = BitmapFactory.decodeFile(Category.secondImagePath);
         capturedImage.setImageBitmap(bitmap);
+        //
+//        capturedImage2.setImageBitmap(bitmap2);
 
         Button classifierOutput = findViewById(R.id.classifierOutput);
         classifierOutput.setText(Camera.probabilityOutput.toString());

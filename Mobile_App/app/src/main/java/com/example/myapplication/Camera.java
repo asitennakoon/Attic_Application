@@ -66,48 +66,10 @@ public class Camera extends AppCompatActivity {
     }
 
 
-    //capture background image
-//    public void capture_image(){
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if(cameraIntent.resolveActivity(getPackageManager())!=null){
-//            File imageFile = null;
-//
-//            try {
-//                imageFile = getImageFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if( imageFile!=null ){
-//                Uri imageUri = FileProvider.getUriForFile(this,"com.example.myapplication.fileprovider",imageFile);
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-//                startActivityForResult(cameraIntent,IMAGE_REQUEST);
-////                startActivity(cameraIntent);
-////                setContentView(R.layout.camera_screen);
-//
-//            }
-//        }
-//    }
-
     //display background image for the user
     public void display_image(View view) {
         Intent loadImageIntent = new Intent(view.getContext(), Image_View.class);
         startActivityForResult(loadImageIntent, 0);
-
-//        Bitmap bitmap = BitmapFactory.decodeFile(currentImagePath);
-//        capturedImage.setImageBitmap(bitmap);
-//        btnCamera.setText(currentImagePath);
     }
 
-
-    //get the image file from the device storage
-//    public File getImageFile() throws IOException{
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageName = "attic_"+timeStamp+"_";
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-//
-//        File imageFile = File.createTempFile(imageName,".jpg",storageDir);
-//        currentImagePath = imageFile.getAbsolutePath();
-//        return imageFile;
-//    }
 }
