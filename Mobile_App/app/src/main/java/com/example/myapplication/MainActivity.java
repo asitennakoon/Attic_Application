@@ -7,13 +7,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String STYLE_KEY ="com.example.myapplication.MainActivity";
+    public static final String LOG_TAG =MainActivity.class.getSimpleName();
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -40,6 +45,20 @@ public class MainActivity extends AppCompatActivity {
     public void loadCategory(View view){
         Intent loadProductsIntent = new Intent(view.getContext(), Category.class);
         startActivityForResult(loadProductsIntent,0);
+    }
+
+    public void ManualView(View view) {
+        // setting animations for the button
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_anim);
+        view.startAnimation(animation);
+
+        /*
+        * Each category button has a tag which determines which button actually is clicked.
+        * It will be passed to the next activity, where relevant room type will be picked.*/
+        Intent intent = new Intent(this,Manual_AR_View.class);
+        Log.d(LOG_TAG,String.valueOf(view.getTag()));
+        intent.putExtra(STYLE_KEY, String.valueOf(view.getTag()));
+        startActivity(intent);
     }
 
 //        FirebaseApp.initializeApp(this);

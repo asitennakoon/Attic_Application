@@ -2,12 +2,16 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,39 +21,50 @@ import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 
-//TODO: Use this sample code to pass the item type
-// Put the following  4 lines of code in the on click listener used to create this activity.
-// Add <CLASS_NAME>.
-//public static final String TITLE_KEY = "com.example.myapplication.<CLASS_NAME>.TITLE";
-//Intent in = new Intent(getApplicationContext(), Manual_View.class);
-//        in.putExtra(TITLE_KEY, "SOFA");
-//        startActivity(in);
 
 public class Manual_View extends AppCompatActivity {
 
     private static final String LOG_TAG = Manual_View.class.getSimpleName();
+    // a key for the path variable
+    public static final String PATH_KEY = "com.example.myapplication.Manual_View.PATH_KEY";
 
     private LinearLayout layout;
     ArrayList<Furniture> furniture = new ArrayList<>();
 
-    private String type;
+    private String roomType;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_view);
 
+        // getting the window size using display metrics
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        // height and width percentages for the popup activity
+        double width = dm.widthPixels*0.8;
+        double height = dm.heightPixels*0.8;
+
+        // setting the window size to the new size
+        getWindow().setLayout((int) width, (int) height);
+
+        // hide the status bar and bottom navigation for full screen
+        hideSystemUI();
+
+        // initialising variables
         TextView title = findViewById(R.id.activity_manual_title);
         Intent intent = getIntent();
-        //TODO: add the Key
-//        type = intent.getStringExtra(MainActivity.TITLE_KEY);
-        title.setText(type);
+        roomType = intent.getStringExtra(Manual_AR_View.TITLE_KEY);
+        title.setText(roomType);
 
         layout = findViewById(R.id.activity_manual_linear_layout);
 
         //TODO: Remove these hardcoded data after firebase load data is implemented.
 
-        furniture.add(new Furniture("Bedroom Chair 2","Black", "AAAAAAAAAAAAAAAAAAAAAAAAAAAjskgnlsgn"
+        furniture.add(new Furniture("Living Room Bedroom Chair 2","Black", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         , "Damro", "leather", "price", "10"));
 
         furniture.add(new Furniture("Bedroom Table 2","Black", "AAAAAAAAAAAAAAAAAAAAAAAAAAAjskgnlsgn"
@@ -58,7 +73,7 @@ public class Manual_View extends AppCompatActivity {
         furniture.add(new Furniture("Bedroom Sofa 2","Black", "AAAAAAAAAAAAAAAAAAAAAAAAAAAjskgnlsgn"
                 , "Damro", "leather", "price", "10"));
 
-
+        // load data from firebase
         loadFirebaseData();
 
 
@@ -75,7 +90,7 @@ public class Manual_View extends AppCompatActivity {
         // ---------------------------- Card View ---------------------------------//
         // layout parameters and margins
         CardView.LayoutParams cParams = new CardView.LayoutParams(CardView.LayoutParams.MATCH_PARENT, CardView.LayoutParams.MATCH_PARENT);
-        cParams.setMargins(40,40,40,40);
+        cParams.setMargins(30,40,30,40);
 
         CardView c = new CardView(this);
         c.setLayoutParams(cParams);
@@ -99,36 +114,52 @@ public class Manual_View extends AppCompatActivity {
         // layout parameters and margins
 
         LinearLayout.LayoutParams tParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        tParams.setMargins(0,8,0,8);
+        tParams.setMargins(5,8,5,8);
 
         TextView heading = new TextView(this);
         heading.setText(f.getName());
         heading.setLayoutParams(tParams);
         heading.setTextColor(Color.parseColor("#80640c"));
-        heading.setTextSize(18);
+        heading.setTextSize(20);
         heading.setTranslationX(10);
+        heading.setTypeface(null, Typeface.BOLD);
+        heading.setGravity(Gravity.CENTER);
         Log.d(LOG_TAG,"CardView LinearLayout Heading initialised.");
 
         // ---------------------------- Product image ----------------------------------//
         ImageView image = new ImageView(this);
         //TODO: get relevant image from firebase storage using furniture name ( f.getName() )
-        image.setImageResource(R.drawable.sofa);
-        image.setMaxWidth(238);
-        // layout parameters and margins
-        image.setMaxHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        image.setMinimumHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        image.setImageResource(R.drawable.sample_bed);
+//
+
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(450,450);
+        image.setLayoutParams(p);
+
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: generate model path and replace "path" below
+
+                Intent intent = new Intent();
+                intent.putExtra(PATH_KEY, "path");
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
         Log.d(LOG_TAG,"CardView LinearLayout image initialised.");
 
         //----------------------------- product data ----------------------------------//
 
         // Table
         // layout parameters and margins
-        TableLayout.LayoutParams tableParams =new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
-        tableParams.setMargins(20,20,20,20);
+        TableLayout.LayoutParams tableParams =new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+        tableParams.setMargins(10,20,10,20);
 
         TableLayout table = new TableLayout(this);
         table.setLayoutParams(tableParams);
         table.setStretchAllColumns(true);
+        table.setColumnShrinkable(2,true);
         Log.d(LOG_TAG,"CardView LinearLayout Table initialised.");
 
         /*
@@ -182,6 +213,7 @@ public class Manual_View extends AppCompatActivity {
         // ----------------------------- Initialising Row --------------------------------------//
         TableRow.LayoutParams tRowParams =new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
 
+
         TableRow row = new TableRow(this);
         row.setLayoutParams(tRowParams);
         Log.d(LOG_TAG,"Table Row initialised.");
@@ -196,9 +228,10 @@ public class Manual_View extends AppCompatActivity {
         // TextView and styles
         TextView txt1 = new TextView(this);
         txt1.setText(Key);
-        txt1.setTextSize(18);
+        txt1.setTextSize(17);
         txt1.setTextColor(Color.parseColor("#80640c"));
         txt1.setLayoutParams(tParams);
+        txt1.setTypeface(null, Typeface.BOLD);
 
         // adding TextView to the TableRow
         row.addView(txt1);
@@ -223,22 +256,21 @@ public class Manual_View extends AppCompatActivity {
 
         // ----------------------------- Third Column - value --------------------------------------//
         // layout parameters for TextView
-        ScrollView s = new ScrollView(this);
-        tParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+        tParams = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
         tParams.setMargins(0,8,0,8);
         // TextView and styles
         TextView txt3 = new TextView(this);
         txt3.setText(value);
-        txt3.setTextSize(18);
+        txt3.setTextSize(17);
         txt3.setTextColor(Color.parseColor("#806007"));
         txt3.setLayoutParams(tParams);
 
-        s.addView(txt3);
+        txt3.setSingleLine(false);
+        txt3.bringToFront();
 
         // adding TextView to the TableRow
-        row.addView(s);
+        row.addView(txt3);
         Log.d(LOG_TAG,"Table Row Column 3 initialised and added to TableRow");
-
 
         return row;
     }
@@ -249,7 +281,7 @@ public class Manual_View extends AppCompatActivity {
             public void run() {
 
                 //TODO: Implement Methods to retrieve data from fireStore and initialise the array.
-                // Use type variable for furniture type.
+                // Use roomType variable for furniture roomType.
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -263,5 +295,30 @@ public class Manual_View extends AppCompatActivity {
 
 
         }).start();
+    }
+
+    private void hideSystemUI() {
+        /**
+         * References: https://developer.android.com/training/system-ui/immersive
+         * */
+        // to hide the status bar and bottom navigation bar for full screen mode.
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+
+    public void onExit(View view) {
+        // setting animations for the exit button
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_anim);
+        view.startAnimation(animation);
+        finish();
     }
 }

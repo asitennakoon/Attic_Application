@@ -96,7 +96,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/category_btn"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:onClick="ManualView"
+                        android:tag="0">
 
                         <ImageView
                             android:id="@+id/imageView8"
@@ -118,7 +120,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/category_btn"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:onClick="ManualView"
+                        android:tag="1">
 
                         <ImageView
                             android:id="@+id/imageView17"
@@ -140,7 +144,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/category_btn"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:onClick="ManualView"
+                        android:tag="2">
 
                         <ImageView
                             android:id="@+id/imageView18"
@@ -162,7 +168,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/category_btn"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:onClick="ManualView"
+                        android:tag="3">
 
                         <ImageView
                             android:id="@+id/imageView19"
@@ -184,7 +192,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/category_btn"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:onClick="ManualView"
+                        android:tag="4">
 
                         <ImageView
                             android:id="@+id/imageView20"
@@ -206,7 +216,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/category_btn"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:onClick="ManualView"
+                        android:tag="5">
 
                         <ImageView
                             android:id="@+id/imageView21"
