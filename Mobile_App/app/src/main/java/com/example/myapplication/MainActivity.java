@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -43,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void loadCategory(View view){
-        Intent loadProductsIntent = new Intent(view.getContext(), Category.class);
-        startActivityForResult(loadProductsIntent,0);
+        Intent intent = new Intent(view.getContext(), Camera.class);
+        startActivity(intent);
     }
 
     public void ManualView(View view) {

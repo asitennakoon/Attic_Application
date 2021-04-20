@@ -53,7 +53,7 @@ public class Ar_Item extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ar_screen);
         productInfo = new Dialog(this);
-        Toast.makeText(Ar_Item.this, "Showing previews for " + Category.chosenCategory + " category of " + Camera.predictedClass[1], Toast.LENGTH_LONG).show();
+        Toast.makeText(Ar_Item.this, "Showing previews for " + Camera.chosenCategory + " category of " + ViewOptions.predictedClass[1], Toast.LENGTH_LONG).show();
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
 
@@ -72,8 +72,8 @@ public class Ar_Item extends AppCompatActivity {
         // Created a storage reference to the root folder of the bucket to gain access to the folders inside
         StorageReference storageRef = storage.getReference();
         // Created child references, that point to respective folders for the predicted class, inside images and objects folders
-        StorageReference imagesRef = storageRef.child("images/" + Camera.predictedClass[1]);
-        StorageReference objectsRef = storageRef.child("objects/" + Camera.predictedClass[1]);
+        StorageReference imagesRef = storageRef.child("images/" + ViewOptions.predictedClass[1]);
+        StorageReference objectsRef = storageRef.child("objects/" + ViewOptions.predictedClass[1]);
 
         // Created an instance of FirebaseFirestore to access the Cloud Firestore of Attic
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -89,7 +89,7 @@ public class Ar_Item extends AppCompatActivity {
                         int index = 0;
 
                         for (StorageReference item : listResult.getItems()) {
-                            if (item.getName().contains(Category.chosenCategory)) {
+                            if (item.getName().contains(Camera.chosenCategory)) {
                                 thumbnail = findViewById(imageViews[index]);
                                 // Preview image downloaded directly from StorageReference using Glide
                                 Glide.with(Ar_Item.this).load(item).into(thumbnail);
@@ -111,7 +111,7 @@ public class Ar_Item extends AppCompatActivity {
                                     String itemName = item.getName().substring(0, item.getName().indexOf("."));
                                     Glide.with(Ar_Item.this).load(imagesRef.child("previews/" + itemName + ".gif")).into(preview);
 
-                                    collectionRef.document(Camera.predictedClass[1] + "-" + itemName).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    collectionRef.document(ViewOptions.predictedClass[1] + "-" + itemName).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                             if (task.isSuccessful()) {

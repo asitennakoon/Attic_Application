@@ -4,8 +4,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,13 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.palette.graphics.Palette;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Image_View extends AppCompatActivity {
     private static final String LOG_TAG = Image_View.class.getSimpleName();
@@ -42,17 +36,18 @@ public class Image_View extends AppCompatActivity {
     public void displayCapturedImage(){
         capturedImage = findViewById(R.id.camera_feed);
 //        ImageView capturedImage2 = findViewById(R.id.camera_feed2);
-        Log.d(LOG_TAG, Category.currentImagePath);
+        Log.d(LOG_TAG, Camera.currentImagePath);
+        Log.d(LOG_TAG, Camera.secondImagePath);
 
-//        capturedImgBitMap = BitmapFactory.decodeFile(Category.currentImagePath);
+//        capturedImgBitMap = BitmapFactory.decodeFile(Camera.currentImagePath);
 
-        capturedImgBitMap = BitmapFactory.decodeFile(Category.secondImagePath);
+        capturedImgBitMap = BitmapFactory.decodeFile(Camera.secondImagePath);
         capturedImage.setImageBitmap(capturedImgBitMap);
 
 //        capturedImage2.setImageBitmap(bitmap2);
 
         Button classifierOutput = findViewById(R.id.classifierOutput);
-        classifierOutput.setText(Camera.probabilityOutput.toString());
+        classifierOutput.setText(ViewOptions.probabilityOutput.toString());
 
         generateColours();
     }
