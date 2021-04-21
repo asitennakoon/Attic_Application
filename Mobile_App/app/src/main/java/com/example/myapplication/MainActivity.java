@@ -1,10 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +7,16 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String STYLE_KEY ="com.example.myapplication.MainActivity";
-    public static final String LOG_TAG =MainActivity.class.getSimpleName();
+    public static final String ROOM_KEY = "com.example.myapplication.MainActivity";
+    public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -34,11 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
-
 
 
     public void loadCategory(View view){
@@ -52,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         view.startAnimation(animation);
 
         /*
-        * Each category button has a tag which determines which button actually is clicked.
-        * It will be passed to the next activity, where relevant room type will be picked.*/
-        Intent intent = new Intent(this,Manual_AR_View.class);
-        Log.d(LOG_TAG,String.valueOf(view.getTag()));
-        intent.putExtra(STYLE_KEY, String.valueOf(view.getTag()));
+         * Each category button has a tag which determines which button actually is clicked.
+         * It will be passed to the next activity, where relevant room type will be picked.*/
+        Intent intent = new Intent(this, Manual_AR_View.class);
+        Log.d(LOG_TAG, String.valueOf(view.getTag()));
+        intent.putExtra(ROOM_KEY, String.valueOf(view.getTag()));
         startActivity(intent);
     }
 

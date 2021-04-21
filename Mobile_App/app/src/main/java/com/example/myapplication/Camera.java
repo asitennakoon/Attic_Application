@@ -43,7 +43,6 @@ public class Camera extends AppCompatActivity  {
         Toast.makeText(this,chosenCategory + " category selected", Toast.LENGTH_SHORT).show();
     }
 
-
 //    get the image file from the device storage
     public File getImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -53,7 +52,6 @@ public class Camera extends AppCompatActivity  {
         currentImagePath = imageFile.getAbsolutePath();
         return imageFile;
     }
-
 
 //    get second image file
     public File getSecondImageFile() throws IOException {
@@ -65,8 +63,6 @@ public class Camera extends AppCompatActivity  {
         secondImagePath = imageFile.getAbsolutePath();
         return imageFile;
     }
-
-
 
     private void askCameraPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
@@ -87,7 +83,6 @@ public class Camera extends AppCompatActivity  {
         }
     }
 
-
     public void openCamera(){
         //Toast.makeText(this, "ViewOptions open request", Toast.LENGTH_SHORT).show();
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -107,7 +102,6 @@ public class Camera extends AppCompatActivity  {
             }
         }
     }
-
 
     public void openSecondCamera(){
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

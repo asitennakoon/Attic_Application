@@ -7,9 +7,9 @@ public class Furniture {
     private String manufacturer;
     private String material;
     private String price;
-    private String stock;
+    private long stock;
 
-    public Furniture(String name, String colour, String description, String manufacturer, String material, String price, String stock) {
+    public Furniture(String name, String colour, String description, String manufacturer, String material, String price, long stock) {
         this.name = name;
         this.colour = colour;
         this.description = description;
@@ -67,11 +67,24 @@ public class Furniture {
         this.price = price;
     }
 
-    public String getStock() {
+    public long getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    @Override
+    public String toString() {
+        return "Furniture{" +
+                "name='" + name + '\'' +
+                ", colour='" + colour + '\'' +
+                ", description='" + description + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", material='" + material + '\'' +
+                ", price='" + price + '\'' +
+                ", stock=" + stock +
+                '}';
     }
 }

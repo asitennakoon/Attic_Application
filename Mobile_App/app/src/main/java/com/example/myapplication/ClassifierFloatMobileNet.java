@@ -50,7 +50,7 @@ public class ClassifierFloatMobileNet extends Classifier {
 
   @Override
   protected String getModelPath() {
-    return "model_unquant.tflite";
+    return "room_type_classifier.tflite";
   }
 
   @Override
