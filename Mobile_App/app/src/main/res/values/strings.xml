@@ -46,4 +46,5 @@
     <string name="recommended_colours">Recommended Colours</string>
     <string name="icon">icon</string>
     <string name="decor">Decor</string>
+    <string name="viewRecommenedColor">view recommended colors</string>
 </resources>
