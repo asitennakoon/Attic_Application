@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -49,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Captured Image"
+                android:text="@string/captured_image"
                 android:textAlignment="center"
                 android:textColor="#80640c"
                 android:textSize="18sp"
@@ -62,14 +61,15 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:backgroundTint="#FFFFFF" />
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="@string/captured_image" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Recommended Colours"
+                android:text="@string/recommended_colours"
                 android:textAlignment="center"
                 android:textColor="#80640c"
                 android:textSize="18sp"
@@ -83,13 +83,12 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:paddingRight="20dp">
+                android:paddingEnd="20dp">
 
                 <LinearLayout
                     android:id="@+id/img_view_colour_layout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:orientation="horizontal" />
             </HorizontalScrollView>

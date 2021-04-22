@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,32 +23,34 @@ import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 
-public class Manual_View extends AppCompatActivity {
+public class ManualView extends AppCompatActivity {
 
-    private static final String LOG_TAG = Manual_View.class.getSimpleName();
+    private static final String LOG_TAG = ManualView.class.getSimpleName();
     // a key for the path variable
-    public static final String PATH_KEY = "com.example.myapplication.Manual_View.PATH_KEY";
+    public static final String PATH_KEY = "com.example.myapplication.ManualView.PATH_KEY";
     private LinearLayout layout;
+    // initialized an arraylist to store the data retrieved from the documents in the cloud database
     ArrayList<Furniture> furniture = new ArrayList<>();
     private String roomType;
-
-    // Created child references, that point to respective folders for the predicted class, inside images and objects folders
+    // created child references, that point to respective folders for the predicted class, inside images and objects folders
     StorageReference imagesRef;
-
-    // Created an instance of FirebaseFirestore to access the Cloud Firestore of Attic
+    // created an instance of FirebaseFirestore to access the Cloud Firestore of Attic
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    // Created a reference to the furniture-info collection
+    // created a reference to the furniture-info collection
     CollectionReference collectionRef = db.collection("furniture-info");
 
     @Override
@@ -78,18 +81,20 @@ public class Manual_View extends AppCompatActivity {
 
         layout = findViewById(R.id.activity_manual_linear_layout);
 
+        // retrieved the necessary documents by querying the collection using a string value containing the selected room type
         collectionRef.whereEqualTo("room", roomType).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d(LOG_TAG, "document.getId() => " + document.getData());
-                        furniture.add(new Furniture(document.getId(), document.getString("color"), document.getString("description"), document.getString("manufacturer"), document.getString("material"), document.getString("price"), (Long) document.get("stock")));
-                        Log.d(LOG_TAG, furniture.get(furniture.size() - 1).toString());
+                        // added each returned document to the furniture arraylist one by one
+                        furniture.add(new Furniture(document.getId(), document.getString("color"), document.getString("description"), document.getString("manufacturer"), document.getString("material"), document.getString("price"), document.getString("stock")));
                     }
                     // load data from firebase
                     loadFirebaseData();
                 } else {
+                    Toast.makeText(ManualView.this, "Error getting documents! Check your network connection", Toast.LENGTH_LONG).show();
                     Log.d(LOG_TAG, "Error getting documents: ", task.getException());
                 }
             }
@@ -146,18 +151,38 @@ public class Manual_View extends AppCompatActivity {
         // ---------------------------- Product image ----------------------------------//
         ImageView image = new ImageView(this);
 
+        // returned below string values to determine the path to retrieve thumbnail images for specific furniture products
         String style = f.getName().split("-")[1];
         String itemName = f.getName().split("-")[2];
-        Glide.with(this).load(imagesRef.child(style + "/" + itemName + ".jpg")).into(image);
-//
+
+        // fetched all items in the specific sub-folder inside the folder for the selected room type
+        imagesRef.child(style).listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                // iterated through the list and filtered out the corresponding item for the retrieved document
+                for (StorageReference item : listResult.getItems()) {
+                    if (item.getName().contains(itemName)) {
+                        // loaded the retrieved item into the image view
+                        Glide.with(ManualView.this).load(item).into(image);
+                    }
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ManualView.this, "Image download failed! Check your network connection", Toast.LENGTH_LONG).show();
+                Log.d(LOG_TAG, String.valueOf(e));
+            }
+        });
+
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(450, 450);
         image.setLayoutParams(p);
-
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                // PATH_KEY is used to assign the path for the corresponding 3D object for the displayed product
                 intent.putExtra(PATH_KEY, style + "/" + itemName + ".glb");
                 setResult(RESULT_OK, intent);
                 finish();
@@ -188,7 +213,7 @@ public class Manual_View extends AppCompatActivity {
         table.addView(getRowView("Manufacturer", f.getManufacturer()));
         table.addView(getRowView("Description", f.getDescription()));
         table.addView(getRowView("Price", f.getPrice()));
-        table.addView(getRowView("Stock", String.valueOf(f.getStock())));
+        table.addView(getRowView("Stock", f.getStock()));
 
         Log.d(LOG_TAG, "CardView LinearLayout Table Rows initialised.");
 
@@ -203,7 +228,6 @@ public class Manual_View extends AppCompatActivity {
         l.addView(table);
         Log.d(LOG_TAG, "CardView LinearLayout Items Added.");
 
-
         // finally, adding the linear layout to CardView
         c.addView(l);
         Log.d(LOG_TAG, "CardView Items Added.");
@@ -212,10 +236,7 @@ public class Manual_View extends AppCompatActivity {
         layout.addView(c);
         Log.d(LOG_TAG, "CardView added to LinearLayout");
         Log.d(LOG_TAG, "");
-
-
     }
-
 
     public TableRow getRowView(String Key, String value) {
 
@@ -229,11 +250,9 @@ public class Manual_View extends AppCompatActivity {
         // ----------------------------- Initialising Row --------------------------------------//
         TableRow.LayoutParams tRowParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
 
-
         TableRow row = new TableRow(this);
         row.setLayoutParams(tRowParams);
         Log.d(LOG_TAG, "Table Row initialised.");
-
 
         // ----------------------------- First Column - Key --------------------------------------//
         // layout parameters for TextView
@@ -253,7 +272,6 @@ public class Manual_View extends AppCompatActivity {
         row.addView(txt1);
         Log.d(LOG_TAG, "Table Row Column 1 initialised and added to TableRow");
 
-
         // --------------------------------- Second Column----------------------------------------//
         // layout parameters for TextView
         tParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
@@ -268,7 +286,6 @@ public class Manual_View extends AppCompatActivity {
         // adding TextView to the TableRow
         row.addView(txt2);
         Log.d(LOG_TAG, "Table Row Column 2 initialised and added to TableRow");
-
 
         // ----------------------------- Third Column - value --------------------------------------//
         // layout parameters for TextView
@@ -323,7 +340,6 @@ public class Manual_View extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-
 
     public void onExit(View view) {
         // setting animations for the exit button

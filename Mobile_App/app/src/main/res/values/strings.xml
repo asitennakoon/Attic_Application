@@ -24,4 +24,26 @@
     <string name="color">Color:</string>
     <string name="price">Price:</string>
     <string name="view">View</string>
+    <string name="livingroom">Livingroom</string>
+    <string name="diningroom">Diningroom</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="coming_soon">Coming Soon...</string>
+    <string name="chair">Chair</string>
+    <string name="table">Table</string>
+    <string name="sofa">Sofa</string>
+    <string name="bed">Bed</string>
+    <string name="dresser">Dresser</string>
+    <string name="dressers">Dressers</string>
+    <string name="view_products">View Products</string>
+    <string name="exit">Exit</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="welcome_to_attic">Welcome to Attic!</string>
+    <string name="attic_is_a_modern_furnishing_mobile_application_powered_by_machine_learning_and_augmented_reality">Attic is a modern furnishing mobile application powered by machine learning and augmented reality.</string>
+    <string name="choose_by_category">Choose by Category</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="logo">logo</string>
+    <string name="captured_image">Captured Image</string>
+    <string name="recommended_colours">Recommended Colours</string>
+    <string name="icon">icon</string>
+    <string name="decor">Decor</string>
 </resources>

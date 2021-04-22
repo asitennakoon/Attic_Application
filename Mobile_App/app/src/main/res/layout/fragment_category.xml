@@ -23,13 +23,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
                 android:fontFamily="@font/poppins_light"
                 android:paddingStart="30dip"
                 android:paddingTop="15dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="15dip"
-                android:text="What are you looking for? "
+                android:text="@string/what_are_you_looking_for"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -47,7 +46,7 @@
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="Chairs"
+                android:text="@string/chairs"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#6E4D00" />
@@ -66,7 +65,7 @@
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="Tables"
+                android:text="@string/tables"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#6E4D00" />
@@ -85,7 +84,7 @@
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="Decor Items"
+                android:text="@string/decor_items"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#6E4D00" />
@@ -104,7 +103,7 @@
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="Office Furniture"
+                android:text="@string/office_furniture"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#6E4D00" />
@@ -123,7 +122,7 @@
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="Sofas"
+                android:text="@string/sofas"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#6E4D00" />
@@ -142,7 +141,7 @@
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="Beds"
+                android:text="@string/beds"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#6E4D00" />

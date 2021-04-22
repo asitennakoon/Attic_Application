@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/thumbnail"
                 app:srcCompat="@drawable/splash_1" />
 
             <Button
@@ -100,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/thumbnail"
                 app:srcCompat="@drawable/splash_3" />
 
             <Button
@@ -110,7 +112,6 @@
                 android:background="#FFFFFF"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Predicted Class -"
                 android:textAllCaps="false" />
         </LinearLayout>
     </LinearLayout>

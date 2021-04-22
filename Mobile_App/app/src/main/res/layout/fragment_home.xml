@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dip"
                 android:layout_marginTop="60dip"
-                android:text="Welcome to Attic!"
+                android:text="@string/welcome_to_attic"
                 android:textSize="24sp" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dip"
                 android:layout_marginTop="20dip"
-                android:text="Attic is a modern furnishing mobile application powered by machine learning and augmented reality." />
+                android:text="@string/attic_is_a_modern_furnishing_mobile_application_powered_by_machine_learning_and_augmented_reality" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dip"
                 android:layout_marginTop="210dip"
-                android:text="Choose by Category"
+                android:text="@string/choose_by_category"
                 android:textSize="18sp" />
 
             <HorizontalScrollView
@@ -50,7 +50,7 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="150dp"
                     android:orientation="horizontal">
 
@@ -63,9 +63,10 @@
 
                         <ImageView
                             android:id="@+id/imageView16"
-                            app:srcCompat="@drawable/beds"
                             android:layout_width="match_parent"
                             android:layout_height="80dp"
+                            android:contentDescription="@string/thumbnail"
+                            app:srcCompat="@drawable/beds"
                             tools:src="@drawable/beds" />
 
                         <TextView
@@ -73,7 +74,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Beds"
+                            android:text="@string/livingroom"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -86,16 +87,17 @@
 
                         <ImageView
                             android:id="@+id/imageView15"
-                            app:srcCompat="@drawable/sofa"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp" />
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/thumbnail"
+                            app:srcCompat="@drawable/sofa" />
 
                         <TextView
                             android:id="@+id/textView11"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Sofas"
+                            android:text="@string/diningroom"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -108,16 +110,17 @@
 
                         <ImageView
                             android:id="@+id/imageView14"
-                            app:srcCompat="@drawable/office_chair"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp" />
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/thumbnail"
+                            app:srcCompat="@drawable/office_chair" />
 
                         <TextView
                             android:id="@+id/textView10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Office"
+                            android:text="@string/bedroom"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -130,16 +133,17 @@
 
                         <ImageView
                             android:id="@+id/imageView13"
-                            app:srcCompat="@drawable/furniture"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp" />
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/thumbnail"
+                            app:srcCompat="@drawable/furniture" />
 
                         <TextView
                             android:id="@+id/textView9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Decor Items"
+                            android:text="@string/coming_soon"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -152,16 +156,17 @@
 
                         <ImageView
                             android:id="@+id/imageView11"
-                            app:srcCompat="@drawable/cabinet"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp" />
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/thumbnail"
+                            app:srcCompat="@drawable/cabinet" />
 
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Tables"
+                            android:text="@string/coming_soon"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -174,16 +179,17 @@
 
                         <ImageView
                             android:id="@+id/imageView9"
-                            app:srcCompat="@drawable/chair"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp" />
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/thumbnail"
+                            app:srcCompat="@drawable/chair" />
 
                         <TextView
                             android:id="@+id/textView7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Chairs"
+                            android:text="@string/coming_soon"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </LinearLayout>
@@ -197,7 +203,7 @@
                 android:background="@drawable/get_started"
                 android:fontFamily="@font/poppins_light"
                 android:onClick="loadCategory"
-                android:text="GET STARTED"
+                android:text="@string/get_started"
                 android:textColor="#936700"
                 android:textSize="18sp" />
 

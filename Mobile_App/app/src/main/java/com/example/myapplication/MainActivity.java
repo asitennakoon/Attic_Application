@@ -17,7 +17,6 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
     public static final String ROOM_KEY = "com.example.myapplication.MainActivity";
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
-
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -38,8 +37,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
     }
 
-
-    public void loadCategory(View view){
+    public void loadCategory(View view) {
         Intent intent = new Intent(view.getContext(), Camera.class);
         startActivity(intent);
     }
@@ -57,100 +55,4 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ROOM_KEY, String.valueOf(view.getTag()));
         startActivity(intent);
     }
-
-//        FirebaseApp.initializeApp(this);
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//
-//        ArFragment arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
-//
-//        RadioGroup rg = findViewById(R.id.radioGroup1);
-//        System.out.println("Assas");
-//        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                System.out.println("bbbb");
-//                switch (checkedId) {
-//                    case R.id.radio1:
-//                        StorageReference modelRef = storage.getReference().child("out.glb");
-//                        try {
-//                            File file1 = File.createTempFile("out", "glb");
-//
-//                            modelRef.getFile(file1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                                @Override
-//                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                                    buildModel(file1);
-//
-//                                }
-//                            });
-//
-//                        } catch (IOException e ) {
-//                            e.printStackTrace();
-//                        }
-//                        break;
-//                    case R.id.radio2:
-//                        StorageReference modelRef2 = storage.getReference().child("out (1).glb");
-//                        try {
-//                            File file1 = File.createTempFile("out(1)", "glb");
-//
-//                            modelRef2.getFile(file1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                                @Override
-//                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                                    buildModel(file1);
-//                                }
-//                            });
-//
-//                        } catch (IOException e ) {
-//                            e.printStackTrace();
-//                        }
-//                        break;
-//                }
-//            }
-//        });
-
-//        findViewById(R.id.downloadBtn).setOnClickListener(v -> {
-//            try {
-//                File file1 = File.createTempFile("chair", "glb");
-//
-//                modelRef.getFile(file1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                        buildModel(file1);
-//
-//                    }
-//                });
-//
-//            } catch (IOException e ) {
-//                e.printStackTrace();
-//            }
-//        });
-
-//        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-//            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
-//            TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
-//            andy.setParent(anchorNode);
-//            andy.setRenderable(renderable);
-//            arFragment.getArSceneView().getScene().addChild(anchorNode);
-//        });
-//    }
-//
-//    private ModelRenderable renderable;
-//
-//    private void buildModel(File file) {
-//
-//        RenderableSource renderableSource = RenderableSource
-//                .builder()
-//                .setSource(this, Uri.parse(file.getPath()), RenderableSource.SourceType.GLB)
-//                .setRecenterMode(RenderableSource.RecenterMode.ROOT)
-//                .build();
-//
-//        ModelRenderable
-//                .builder()
-//                .setSource(this, renderableSource)
-//                .setRegistryId(file.getPath())
-//                .build()
-//                .thenAccept(modelRenderable -> {
-//                    Toast.makeText(this, "Model built", Toast.LENGTH_SHORT).show();;
-//                    renderable = modelRenderable;
-//                });
-//    }
 }

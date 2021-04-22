@@ -7,9 +7,9 @@ public class Furniture {
     private String manufacturer;
     private String material;
     private String price;
-    private long stock;
+    private String stock;
 
-    public Furniture(String name, String colour, String description, String manufacturer, String material, String price, long stock) {
+    public Furniture(String name, String colour, String description, String manufacturer, String material, String price, String stock) {
         this.name = name;
         this.colour = colour;
         this.description = description;
@@ -67,11 +67,11 @@ public class Furniture {
         this.price = price;
     }
 
-    public long getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock = stock;
     }
 

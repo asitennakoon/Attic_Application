@@ -67,7 +67,7 @@
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
-                android:contentDescription="Chair"
+                android:contentDescription="@string/chair"
                 android:drawableStart="@drawable/chair"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
@@ -88,7 +88,7 @@
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
-                android:contentDescription="Table"
+                android:contentDescription="@string/table"
                 android:drawableStart="@drawable/cabinet"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
@@ -109,9 +109,11 @@
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
+                android:contentDescription="@string/decor"
                 android:drawableStart="@drawable/furniture"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
+                android:onClick="loadProducts"
                 android:paddingStart="30dip"
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
@@ -119,8 +121,7 @@
                 android:text="@string/decor_items"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#6E4D00"
-                android:onClick="loadProducts"/>
+                android:textColor="#6E4D00" />
 
             <Button
                 android:id="@+id/button11"
@@ -129,18 +130,19 @@
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
+                android:contentDescription="@string/dresser"
                 android:drawableStart="@drawable/office_chair"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
+                android:onClick="loadProducts"
                 android:paddingStart="30dip"
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
                 android:paddingBottom="20dip"
-                android:text="@string/office_furniture"
+                android:text="@string/dressers"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#6E4D00"
-                android:onClick="loadProducts"/>
+                android:textColor="#6E4D00" />
 
             <Button
                 android:id="@+id/button12"
@@ -149,7 +151,7 @@
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
-                android:contentDescription="Sofa"
+                android:contentDescription="@string/sofa"
                 android:drawableStart="@drawable/sofa"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
@@ -170,9 +172,11 @@
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
+                android:contentDescription="@string/bed"
                 android:drawableStart="@drawable/beds"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
+                android:onClick="loadProducts"
                 android:paddingStart="30dip"
                 android:paddingTop="20dip"
                 android:paddingEnd="30dip"
@@ -180,8 +184,7 @@
                 android:text="@string/beds"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#6E4D00"
-                android:onClick="loadProducts"/>
+                android:textColor="#6E4D00" />
 
         </LinearLayout>
     </ScrollView>

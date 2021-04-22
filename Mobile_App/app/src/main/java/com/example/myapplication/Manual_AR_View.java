@@ -13,8 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.ux.ArFragment;
+import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -25,26 +28,37 @@ import java.io.IOException;
 public class Manual_AR_View extends AppCompatActivity {
     public static final String TITLE_KEY = "com.example.myapplication.Manual_AR_View.TITLE";
     public static final String LOG_TAG = Manual_AR_View.class.getSimpleName();
-
     // a request code for the second activity (popup)
     public static final int REQUEST_CODE = 10;
-
-    //TODO: add Styles in the array
     private static String[] roomTypes = {"Livingroom", "Diningroom", "Bedroom"};
     private String roomType;
-
     StorageReference objectsRef;
-
+    private ModelRenderable renderable;
+    ArFragment arFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual__a_r__view);
 
+        // initialized an instance of ArFragment in the Sceneform library for the AR functionality
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
+            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
+            TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
+            andy.getScaleController().setMaxScale(1.0f);
+            andy.getScaleController().setMinScale(0.2f);
+            andy.setParent(anchorNode);
+            andy.setRenderable(renderable);
+            arFragment.getArSceneView().getScene().addChild(anchorNode);
+        });
+
         // getting the selected style from the intent
         Intent intent = getIntent();
         int styleIndex = Integer.parseInt(intent.getStringExtra(MainActivity.ROOM_KEY));
         roomType = roomTypes[styleIndex];
+
+        // created a reference to the folder of the selected room type in the cloud storage
         objectsRef = FirebaseStorage.getInstance().getReference().child("objects/" + roomType);
     }
 
@@ -54,7 +68,7 @@ public class Manual_AR_View extends AppCompatActivity {
         view.startAnimation(animation);
 
         // starting the popup for the result.
-        Intent in = new Intent(getApplicationContext(), Manual_View.class);
+        Intent in = new Intent(getApplicationContext(), ManualView.class);
         in.putExtra(TITLE_KEY, roomType);
         startActivityForResult(in, REQUEST_CODE);
         // transition --> drag from bottom
@@ -65,13 +79,14 @@ public class Manual_AR_View extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            // checks whether the result request code matches the sent rrequest code
+            // checks whether the result request code matches the sent request code
             if (resultCode == RESULT_OK) {
                 // if the result status is OK, load the model.
-                String model_path = data.getStringExtra(Manual_View.PATH_KEY);
+                String model_path = data.getStringExtra(ManualView.PATH_KEY);
                 Log.d(LOG_TAG, "path: " + model_path);
                 Toast.makeText(this, "Building model", Toast.LENGTH_SHORT).show();
 
+                // this variable is assigned with the path to the 3D object in the storage
                 StorageReference object = objectsRef.child(model_path);
                 try {
                     File file = File.createTempFile((model_path.substring(0, model_path.indexOf("/"))) + (model_path.substring(model_path.indexOf("/") + 1, model_path.indexOf("."))), "glb");
@@ -82,16 +97,15 @@ public class Manual_AR_View extends AppCompatActivity {
                         }
                     });
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Toast.makeText(this, "Build failed! Check your network connection", Toast.LENGTH_LONG).show();
+                    Log.d(LOG_TAG, e.toString());
                 }
             }
         }
     }
 
-    private ModelRenderable renderable;
-
+    // built-in methods in the Sceneform library are used to build and render 3D objects in an AR environment
     private void buildModel(File file) {
-
         RenderableSource renderableSource = RenderableSource
                 .builder()
                 .setSource(this, Uri.parse(file.getPath()), RenderableSource.SourceType.GLB)
@@ -105,7 +119,6 @@ public class Manual_AR_View extends AppCompatActivity {
                 .build()
                 .thenAccept(modelRenderable -> {
                     Toast.makeText(this, "3D model built", Toast.LENGTH_SHORT).show();
-                    ;
                     renderable = modelRenderable;
                 });
     }

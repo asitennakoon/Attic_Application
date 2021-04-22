@@ -24,7 +24,7 @@
         <activity android:name=".Test"></activity>
         <activity android:name=".Manual_AR_View" />
         <activity
-            android:name=".Manual_View"
+            android:name=".ManualView"
             android:theme="@style/AppTheme.PopupTheme" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -33,9 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ar_Item" />
+        <activity android:name=".AR_Item" />
         <activity android:name=".ViewOptions" />
-        <activity android:name=".Image_View" />
+        <activity android:name=".ImageView" />
         <activity android:name=".Camera" />
 
         <provider
