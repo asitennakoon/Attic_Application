@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { firebaseConfig } from '../../../environments/environment';
+
+// firebase configurations
+const firebaseConfig = {
+  apiKey: "AIzaSyCU_hDV3QZMRcEJ9Z7piImaY48KqOvVlsI",
+  authDomain: "attic-b6655.firebaseapp.com",
+  projectId: "attic-b6655",
+  storageBucket: "attic-b6655.appspot.com",
+  messagingSenderId: "109489326265",
+  appId: "1:109489326265:web:e502f9c6c27966d9447368",
+  measurementId: "G-9DCTKH9SCF"
+};
+
 @Injectable({
   providedIn: 'root'
 })

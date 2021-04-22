@@ -9,8 +9,6 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AngularFireStorageModule,} from "@angular/fire/storage";
-// database configurations are declared in the environment
-import { firebaseConfig } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import forms module to handle forms
@@ -30,6 +28,16 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FurnitureViewComponent } from './components/furniture-view/furniture-view.component';
 
+// firebase configurations
+const firebaseConfig = {
+  apiKey: "AIzaSyCU_hDV3QZMRcEJ9Z7piImaY48KqOvVlsI",
+  authDomain: "attic-b6655.firebaseapp.com",
+  projectId: "attic-b6655",
+  storageBucket: "attic-b6655.appspot.com",
+  messagingSenderId: "109489326265",
+  appId: "1:109489326265:web:e502f9c6c27966d9447368",
+  measurementId: "G-9DCTKH9SCF"
+};
 
 @NgModule({
   declarations: [
