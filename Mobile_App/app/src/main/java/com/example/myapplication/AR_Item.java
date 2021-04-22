@@ -160,12 +160,12 @@ public class AR_Item extends AppCompatActivity {
                                     Log.d(TAG, e.toString());
                                 } finally {
                                     productInfo.dismiss();
-                                    while (true){
-                                        if(!state){
-                                            progressbar.setVisibility(View.GONE);
-                                            break;
-                                        }
-                                    }
+//                                    while (true){
+//                                        if(!state){
+//                                            progressbar.setVisibility(View.GONE);
+//                                            break;
+//                                        }
+//                                    }
                                 }
                             });
 
@@ -228,7 +228,7 @@ public class AR_Item extends AppCompatActivity {
                     Toast.makeText(this, "3D model built", Toast.LENGTH_SHORT).show();
                     renderable = modelRenderable;
                 });
-        state=false;
+        progressbar.setVisibility(View.INVISIBLE);
     }
 
 }
