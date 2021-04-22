@@ -5,12 +5,16 @@ import { firebaseConfig } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class StorageService {
+  /* This service is used to send and retrieve photos and models from firebase storage. */
 
 constructor(private storage: AngularFireStorage) { }
 
-  sendToFireStore(filename: string, path: string){
+  //the name of the file and its' path in the device storage are required to upload.
+  sendToFireStorage(filename: string, path: string){
     this.storage.upload(filename,path);
   }
+
+  // a method to get an image or an object from firebase storage using its' path.
 
   // async getFromStore(path: string){
   //   let url ="gs://attic-b6655.appspot.com/images/Bedroom/Chair0.png";

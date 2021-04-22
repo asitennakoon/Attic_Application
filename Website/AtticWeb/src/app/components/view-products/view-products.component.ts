@@ -9,7 +9,11 @@ import { FirestoreService } from 'src/app/Services/firestore/firestore.service';
   styleUrls: ['./view-products.component.css']
 })
 export class ViewProductsComponent implements OnInit {
+  /*
+    A cmponent to view the existing products.
+  */
 
+    // input decorator to get the relevant user account from the login component.
   @Input() user!: IAccount;
 
   addProduct: boolean;
@@ -20,13 +24,16 @@ export class ViewProductsComponent implements OnInit {
 
 
   constructor(private firestore: FirestoreService) {
+    // initialise the furnitures
     this.furnitures=this.firestore.getFurnitures();
     
    }
 
   ngOnInit() {
+    // initialise the header component.
     this.header = {title: "VIEW PRODUCTS",account: this.user}
     
+    // get only the furitures belong to the user.
     // console.log(this.furnitures)
       this.storeFurniture =this.getStoreFurniture();
       this.addProduct=false;
@@ -35,7 +42,9 @@ export class ViewProductsComponent implements OnInit {
 
   }
 
+  // a method to get all the furnitures belong to the user.
   getStoreFurniture(){
+    // get all the furnitures from the firestore service.
     this.furnitures=this.firestore.getFurnitures();
 
     let furnitures1: IFurniture[] = [];
@@ -46,11 +55,10 @@ export class ViewProductsComponent implements OnInit {
     // console.log(furnitures2.length)
 
     let user = this.user;
-    
+    // a timeout until the furnitures2 array is loaded.
     setTimeout(function(){
       for(let furniture of furnitures2){
 
-        console.log("inside for")
         if(furniture.manufacturer == user.store){
           furnitures1.push(furniture);
           console.log(furniture);
@@ -63,7 +71,7 @@ export class ViewProductsComponent implements OnInit {
 
   }
 
-
+  // a flag to load the file-upload component.
   onAddProductClick(){
     this.addProduct = true;
   }

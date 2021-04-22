@@ -1,141 +1,152 @@
-<div class="header">
-    <app-header [details]="header"></app-header>
-
-</div>
-
-<div class="content">
-
-    <div class="content-div1">
-        <div class="model-image">
-
-            <div class="file1">
-
-                <input type="file" (change)="uploadModel($event)" id="file1">
-                <label for="file1">+</label>
-                <br>
-                <h3 id="modelMsg">{{modelUpload}}</h3>
-
-            </div>
-
-            <!-- <div *ngIf="progressBarVisible">
-                <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
-            </div> -->
-        </div>
-
-
-        <div class="preview">
-            <div class="preview-image mar-right">
-
-                <div class="file2" *ngIf="!preview1Uploaded">
-
-                    <input type="file" (change)="uploadImage1($event)" id="file2">
-                    <label for="file2">+</label>
-                    <br>
-                    <h3>Preview Image</h3>
-
-                </div>
-                <div class="file-img file2" *ngIf="preview1Uploaded">
-                    <div class="image">
-                        <img [src]="image1Url" width="100%" alt="preview image">
-                    </div>
-                    <br>
-                    <button class="reset" (click)="preview1Uploaded=false">Reset Image</button>
-                </div>
-
-
-
-            </div>
-
-            <div class="preview-image ">
-
-                <div class="file2" *ngIf="!preview2Uploaded">
-
-                    <input type="file" (change)="uploadImage2($event)" id="file3">
-                    <label for="file3">+</label>
-                    <br>
-                    <h3>Gif Image</h3>
-
-                </div>
-                <div class="file-img file2" *ngIf="preview2Uploaded">
-                    <div class="image">
-                        <img [src]="image2Url" width="100%" alt="preview image">
-                    </div>
-                    <br>
-                    <button class="reset" (click)="preview2Uploaded=false">Reset Image</button>
-                </div>
-
-            </div>
-        </div>
+<div *ngIf="showContent">
+    <!-- content of add products page -->
+    <div class="header">
+        <!-- page header -->
+        <app-header [details]="header"></app-header>
 
     </div>
-    <div class="right">
 
-        <h1>Furniture Details</h1>
-        <hr>
+    <div class="content">
 
-        <form [formGroup]="productForm" (ngSubmit)="onProductUpload()">
+        <!-- --------------------------------------------------- model upload ------------------------------------------------------- -->
+        <div class="content-div1">
+            <div class="model-image">
 
-            <div class="form-field">
-                <label for="type">Scene Type</label>
-                <br>
-                <select formControlName="sceneTypes">
+                <div class="file1">
+
+                    <input type="file" (change)="uploadModel($event)" id="file1">
+                    <label for="file1">+</label>
+                    <br>
+                    <h3 id="modelMsg">{{modelUpload}}</h3>
+
+                </div>
+
+                <!-- <div *ngIf="progressBarVisible">
+                <mat-progress-bar [mode]="'intermediate'"></mat-progress-bar>
+            </div> -->
+            </div>
+            <!-- -------------------------------------------------- model upload end --------------------------------------------------- -->
+
+            <!-- -------------------------------------------- preview image 1 ==>PNG upload -------------------------------------------- -->
+            <div class="preview">
+                <div class="preview-image mar-right">
+
+                    <div class="file2" *ngIf="!preview1Uploaded">
+
+                        <input type="file" (change)="uploadImage1($event)" id="file2">
+                        <label for="file2">+</label>
+                        <br>
+                        <h3>Preview Image</h3>
+
+                    </div>
+                    <div class="file-img file2" *ngIf="preview1Uploaded">
+                        <div class="image">
+                            <img [src]="image1Url" width="100%" alt="preview image">
+                        </div>
+                        <br>
+                        <button class="reset" (click)="preview1Uploaded=false">Reset Image</button>
+                    </div>
+
+
+
+                </div>
+                <!-- -------------------------------------------- preview image 2 ==>GIF upload -------------------------------------------- -->
+                <div class="preview-image ">
+
+                    <div class="file2" *ngIf="!preview2Uploaded">
+
+                        <input type="file" (change)="uploadImage2($event)" id="file3">
+                        <label for="file3">+</label>
+                        <br>
+                        <h3>Gif Image</h3>
+
+                    </div>
+                    <div class="file-img file2" *ngIf="preview2Uploaded">
+                        <div class="image">
+                            <img [src]="image2Url" width="100%" alt="preview image">
+                        </div>
+                        <br>
+                        <button class="reset" (click)="preview2Uploaded=false">Reset Image</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="right">
+            <!-- -------------------------------------------- product details form -------------------------------------------- -->
+            <h1>Furniture Details</h1>
+            <hr>
+
+            <form [formGroup]="productForm" (ngSubmit)="onProductUpload()">
+
+                <div class="form-field">
+                    <label for="type">Scene Type</label>
+                    <br>
+                    <select formControlName="sceneTypes">
                     <option disabled> Select Scene Type</option>
                     <option *ngFor="let type of sceneTypes"  value={{type}}>{{type}}</option>
               </select>
-            </div>
+                </div>
 
-            <div class="form-field">
-                <label for="type">Furniture Type</label>
-                <br>
-                <select formControlName="furnituretypes">
+                <div class="form-field">
+                    <label for="type">Furniture Type</label>
+                    <br>
+                    <select formControlName="furnituretypes">
                     <option disabled  > Select Furniture Type</option>
                     <option *ngFor="let type of furnituretypes"  value={{type}}>{{type}}</option>
               </select>
-            </div>
+                </div>
 
-            <div class="form-field">
-                <label for="color">Colour</label>
-                <br>
-                <input type="text" id="color" formControlName="color" placeholder="Enter product colour.." required>
-            </div>
+                <div class="form-field">
+                    <label for="color">Colour</label>
+                    <br>
+                    <input type="text" id="color" formControlName="color" placeholder="Enter product colour.." required>
+                </div>
 
-            <div class="form-field">
-                <label for="mat">Material</label>
-                <br>
-                <input type="text" id="mat" formControlName="material" placeholder="Enter product material.." required>
-            </div>
+                <div class="form-field">
+                    <label for="mat">Material</label>
+                    <br>
+                    <input type="text" id="mat" formControlName="material" placeholder="Enter product material.." required>
+                </div>
 
-            <div class="form-field">
-                <label for="price">Price</label>
-                <br>
-                <input type="text" id="price" formControlName="price" placeholder="Enter product price.." required>
-            </div>
+                <div class="form-field">
+                    <label for="price">Price</label>
+                    <br>
+                    <input type="text" id="price" formControlName="price" placeholder="Enter product price.." required>
+                </div>
 
-            <div class="form-field">
-                <label for="stock">Stock</label>
-                <br>
-                <input type="text" id="stock" formControlName="stock" placeholder="Enter product stock.." required>
-            </div>
+                <div class="form-field">
+                    <label for="stock">Stock</label>
+                    <br>
+                    <input type="text" id="stock" formControlName="stock" placeholder="Enter product stock.." required>
+                </div>
 
-            <div class="form-field">
-                <label for="description">Additional Information (Optional)</label>
-                <br>
-                <textarea id="description" name="description" formControlName="description" placeholder="Enter product additional information.."></textarea>
-            </div>
-            <hr>
+                <div class="form-field">
+                    <label for="description">Additional Information (Optional)</label>
+                    <br>
+                    <textarea id="description" name="description" formControlName="description" placeholder="Enter product additional information.."></textarea>
+                </div>
+                <hr>
+                <div class="btn">
+                    <button class="upload">Upload</button>
+                </div>
+
+            </form>
+
             <div class="btn">
-                <button class="upload">Upload</button>
+                <button class="cancel" (click)="showContent=false">Discard Item</button>
             </div>
 
-        </form>
-
-        <div class="btn">
-            <button class="cancel">Discard Item</button>
         </div>
 
+
+
+
     </div>
+</div>
 
-
-
-
+<div *ngIf="!showContent">
+    <!-- hide addproducts component and show view products compnonent is loaded. -->
+    <app-view-products [user]="user"></app-view-products>
 </div>

@@ -1,10 +1,10 @@
 <div class="content">
     <div class="login-main">
-
+        <!-- attic logo -->
         <div class="main-img1">
             <img src="../../../assets/images/logo1.png" width="100%">
         </div>
-
+        <!-------------------------------------- Sign up form ------------------------------------------------->
         <div class="form">
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
                 <mat-card class="login-mat" align="center">
@@ -63,17 +63,17 @@
                     </mat-card-actions>
                 </mat-card>
             </form>
-
+            <!-------------------------------------------------- SIgn up form end ------------------------------------------------>
         </div>
+        <!---------------------------------------- create new account section ------------------------------------------------- -->
         <div class="new-account">
             <h3>OR</h3>
             <h3>Already have an account ?</h3>
             <button routerLink="" routerLinkActive="true" class="attic-button">Login</button>
-
         </div>
     </div>
 
-
+    <!-- The image on the right side -->
     <div class="main-img2">
         <img src="../../../assets/images/bg-phone.png" alt="attic phone mockup" height="100%">
 

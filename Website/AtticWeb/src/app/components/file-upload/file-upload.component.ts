@@ -13,12 +13,16 @@ import { StorageService } from 'src/app/Services/storage/storage.service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
+  /* This component is used to upload a furniture to firebase */
 
   productForm: FormGroup;
+
+  
 
   path: string = "";
   name: string = "";
 
+  // input decorator to get the user account from login page.
   @Input() user!: IAccount;
   header;
 
@@ -47,18 +51,20 @@ export class FileUploadComponent implements OnInit {
 
   progressBarVisible: boolean;
 
-
+  showContent:boolean
 
 
 
   constructor(private storage: StorageService, private firestore: FirestoreService) {
+    // initialise variables
     this.progressBarVisible = false;
     this.modelUploaded = false;
     this.preview1Uploaded = false;
     this.preview2Uploaded = false;
+    this.showContent=true;
 
 
-
+    // initialise the form controls with validators.
     this.productForm = new FormGroup({
       'sceneTypes': new FormControl('', [Validators.required]),
       'furnituretypes': new FormControl('', [Validators.required]),
@@ -69,50 +75,51 @@ export class FileUploadComponent implements OnInit {
       'description': new FormControl('', [Validators.required])
 
     });
-
-
-
-
-    console.log(this.firestore.getFurnitures())
-
-
-
+    // console.log(this.firestore.getFurnitures())
   }
 
   ngOnInit(): void {
+    // initialise the header for the product page
     this.header = {title: "ADD PRODUCT",account: this.user}
   }
 
   uploadModel($event) {
-    
-    console.log((this.user as IAccount)) ;
+    // this function will trigger when upload button of the model is clicked.
 
+
+    // console.log((this.user as IAccount)) ;
+
+    // progressbar
     // this.progressBarVisible=true;
 
+    // get the model and name from the event data.
     this.modelPath = $event.target.files[0];
     this.modelName = $event.target.files[0].name;
 
-    // setTimeout(()=>{
-    //   this.progressBarVisible=false;
-    // }, 400);
+
     console.log("Model name: " + this.modelName);
 
+    // check whether the model is in the proper format
     if (!this.modelName.endsWith(".glb")) {
       this.modelUpload = "Invalid Model Type !"
       document.getElementById("modelMsg").style.color = "red";
     }
 
     else {
+      // if the model is in proper format, a message will be shown and a flag will set to true.
       this.modelUpload = "Model Uploaded";
       this.modelUploaded = true;
     }
   }
 
   uploadImage1($event) {
+    // function triggered when image 1 upload is clicked.
     this.image1Path = $event.target.files[0];
     this.image1Name = $event.target.files[0].name;
 
-    if (this.image1Name.endsWith(".png") ) {
+    // checks whether the image is in the required format ==> .png
+    if (this.image1Name.endsWith(".jpg") ) {
+      // if the file extension is correct, load the image and display.
       var reader = new FileReader();
       reader.readAsDataURL($event.target.files[0]);
 
@@ -122,16 +129,20 @@ export class FileUploadComponent implements OnInit {
       }
     }
     else {
+      // if the file is not in proper format, show the  default.
       this.image1Url = this.defaultImage;
     }
 
   }
 
   uploadImage2($event) {
+    // function triggered when image 1 upload is clicked.
     this.image2Path = $event.target.files[0];
     this.image2Name = $event.target.files[0].name;
 
+    // checks whether the image is in the required format ==> .gif
     if (this.image2Name.toLocaleLowerCase().endsWith(".gif")) {
+      // if the file extension is correct, load the image and display.
       var reader = new FileReader();
       reader.readAsDataURL($event.target.files[0]);
 
@@ -141,76 +152,117 @@ export class FileUploadComponent implements OnInit {
       }
     }
     else {
+      // if the file is not in proper format, show the  default.
       this.image2Url = this.defaultImage;
     }
 
   }
 
 
-  sendToFireStore(scene: string, type: string) {
+  sendToFireStore(scene: any, type: any, count: number) {
     // this.progressBarVisible=true;
 
     // setTimeout(()=>{
     //   this.progressBarVisible=false;
     // }, 400);
-    let count = this.firestore.getExistingCount(scene, type);
 
-    console.log(this.path);
-    let filename = "/objects/" + scene + "/" + type + count + ".glb";
-    this.storage.sendToFireStore(filename, this.modelPath);
+    // get the next furniture number of the scene and type.
+    
+    console.log("count: "+count)
 
-    filename = "/images/" + scene + "/" + type + count + ".png";
-    this.storage.sendToFireStore(filename, this.image1Path);
+    // console.log("path: "+this.path);
 
-    filename = "/images/" + scene + "/" + type + count + ".gif";
-    this.storage.sendToFireStore(filename, this.image2Path);
+    // Folder path of "Bedroom-Modern-Chair38.png" in the firebase is,
+      //  images ==> gs://attic-b6655.appspot.com/images/Bedroom/Modern/Chair38.png (and .gif)
+      //  model ==>  gs://attic-b6655.appspot.com/models/Bedroom/Modern/Chair38.glb
+
+    //scene contains the room type and style type separated by "-". (ex: Bedroom-Modern)
+    var splitIndex = Number(0);
+    for(var i=0;i<scene.length;i++){
+      if(scene.charAt(i) =="-"){
+        splitIndex = i;
+        break;
+      }
+    }
+    var room = scene.substring(0,splitIndex);
+    var style = scene.substring(splitIndex+1, scene.length+1);
+
+    // send the files to the relevant locations in firebase
+    let filename = "/objects/" + room + "/"+ style + "/" + type + count + ".glb";
+    this.storage.sendToFireStorage(filename, this.modelPath);
+
+    filename = "/images/" + room + "/"+ style + "/" + type + count + ".jpg";
+    this.storage.sendToFireStorage(filename, this.image1Path);
+
+    filename = "/images/" + room + "/"+ style + "/previews/" + type + count + ".gif";
+    this.storage.sendToFireStorage(filename, this.image2Path);
 
 
   }
 
   onProductUpload() {
+    // triggered when form upload button is clicked.
     console.log(this.productForm.value);
     let values = this.productForm.value;
 
+    // if form is invalid
     if(!this.productForm.valid){
-      window.alert("Invalid inputs !")
+      window.alert("Invalid inputs !\n  *Please fill all the form data.\n  *Please check the selected types.\n  * Model file must be .glb format."
+      +"\n  *Image 1 must be a .png file.\n  *Image 2 must be a .gif file.\n\n Try again !")
       return;
     }
 
 
     let selected_scene = values.sceneTypes;
     let selected_type = values.furnituretypes;
-    let key: string = selected_scene + "-" + selected_type + this.firestore.getExistingCount(selected_scene, selected_type);
+    // generating the furniture key (unique name) ex: Bedroom-Modern-Chair38
+   let  n =this.firestore.getExistingCount(selected_scene, selected_type);
+    let key: string = selected_scene + "-" + selected_type + n;
 
-    console.log(key)
+    console.log(selected_scene);
 
+    // separate room type from scene.
+    var splitIndex = Number(0);
+      for(var i=0;i<selected_scene.length;i++){
+        if(selected_scene.charAt(i) =="-"){
+          splitIndex = i;
+          break;
+        }
+      }
+      var room = selected_scene.substring(0,splitIndex);
+
+    // create a new furniture object with user data.
     let furniture: IFurniture = {
       $key: key,
       scene: selected_scene,
       type: selected_type,
-      colour: values.color,
+      color: values.color,
       manufacturer: this.user.store,
       material: values.material,
       price: values.price,
       stock: values.stock,
       description: values.description,
-
-
+      room: room,
     }
 
 
-    console.log(this.modelUploaded);
-    console.log(this.preview1Uploaded);
-    console.log(this.preview2Uploaded);
+    // console.log(this.modelUploaded);
+    // console.log(this.preview1Uploaded);
+    // console.log(this.preview2Uploaded);
 
 
-
+    // if all three flags are true, since the form is also valid, add the furniture to firestore.
     if (this.modelUploaded && this.preview1Uploaded && this.preview2Uploaded) {
       this.firestore.addFurniture(key, furniture);
-      this.sendToFireStore(selected_scene,selected_type);
+      this.sendToFireStore(selected_scene,selected_type,n);
+
+      
+      window.alert("Furniture added successfully !");
+      this.showContent=false;
+
     }
     else{
-      window.alert("Model and images are missing")
+      window.alert("Model or images are missing")
     }
   }
 

@@ -7,7 +7,7 @@
     background: #FFFFFF;
     box-shadow: 3px 6px 20px rgba(0, 0, 0, 0.14);
     border-radius: 1.2vw;
-    float: left;
+    /* float: left; */
     overflow-y: scroll;
 }
 
@@ -46,7 +46,7 @@
 
 .description {
     overflow-y: scroll;
-    height: 10vh;
+    height: 8vh;
 }
 
 h1,

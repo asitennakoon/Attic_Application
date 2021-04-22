@@ -14,6 +14,8 @@ import { IAccount } from '../../Interfaces/IAccount';
 })
 export class LoginComponent implements OnInit {
 
+  /* This comonent is used for the login functionality */
+
   public accounts:IAccount[]=[];
   user: IAccount;
   
@@ -24,14 +26,14 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private loginService: LoginService) {
-
+    // get all accounts from login service
     this.loginService.getAccounts().subscribe(data => {
       this.accounts=data;
-    console.log(data);
+    // console.log(data);
 
     });
 
-
+    // login form controls and required validators initialization.
     this.loginForm = new FormGroup({
       'username': new FormControl('', [
         Validators.required
@@ -45,19 +47,20 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.accounts);
+    // console.log(this.accounts);
 
   }
 
   onSubmit():void{
-
+    // check the login details for each account.
     this.accounts.forEach(account => {
       if(this.loginForm.value.username == account.username
           && this.loginForm.value.password==account.password
           ){
             this.credentialsValid=true;
             this.user=account;
-            console.log(this.user);
+            // console.log(this.user);
+            // if the credentials match, login component will hiden and view products compnonent is loaded.
             this.showContent=true;
             return;
           }

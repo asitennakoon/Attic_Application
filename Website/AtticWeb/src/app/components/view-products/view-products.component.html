@@ -1,8 +1,10 @@
+<!-- View products component -->
 <div *ngIf="!addProduct">
     <app-header [details]="header"></app-header>
 
     <div class="content">
         <div *ngFor="let f of storeFurniture">
+            <!-- app furnitiure view component displays a specific furniture -->
             <app-furniture-view [furniture]="f"></app-furniture-view>
         </div>
     </div>
@@ -15,7 +17,7 @@
 
 </div>
 
-
+<!-- Load file-upload component and hide view-products component on add product click -->
 <div *ngIf="addProduct">
     <app-file-upload [user]="user"></app-file-upload>
 </div>

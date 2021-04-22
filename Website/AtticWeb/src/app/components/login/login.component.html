@@ -1,10 +1,11 @@
 <div class="content" *ngIf="!showContent">
     <div class="login-main">
-
+        <!-- attic logo -->
         <div class="main-img1">
             <img src="../../../assets/images/logo1.png" width="100%">
         </div>
 
+        <!----------------------------------------------- login form content ----------------------------------------------->
         <div class="form">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <mat-card class="login-mat" align="center">
@@ -40,12 +41,14 @@
                     </mat-card-actions>
                 </mat-card>
             </form>
-
+            <!----------------------------------------------- end of login form ----------------------------------------------->
         </div>
+        <!--------------------------------------------- signup options ------------------------------------------------------>
         <div class="new-account">
             <h3>OR</h3>
             <h3>New to Attic?</h3>
             <button routerLink="/sign-up" routerLinkActive="true" class="attic-button">Create an Attic Account</button>
+            <!-- login with google function not available yet. THerefore button is disabled -->
             <button disabled class="google-button">Sign Up With Google Account</button>
         </div>
     </div>
@@ -59,6 +62,6 @@
 
 
 <div *ngIf="showContent">
-    <!-- <app-file-upload [user]="user"></app-file-upload> -->
+    <!-- if the credentials match, login component will hiden and view products compnonent is loaded. -->
     <app-view-products [user]="user"></app-view-products>
 </div>

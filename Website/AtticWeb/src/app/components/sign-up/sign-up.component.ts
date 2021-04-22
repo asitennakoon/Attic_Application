@@ -12,27 +12,27 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class SignUpComponent implements OnInit {
 
+  /* This component is for the signup functionality. */
 
-  
-  public accounts:IAccount[]=[];
+  public accounts: IAccount[] = [];
   user: IAccount;
-  
-  public credentialsValid: boolean=true;
+
+  public credentialsValid: boolean = true;
   public error = ""
-  public showContent=false;
+  public showContent = false;
 
   public signupForm: FormGroup;
 
 
-  constructor(private loginService: LoginService, private router:  Router) {
-
+  constructor(private loginService: LoginService, private router: Router) {
+    // subscribe to the login service and get all accounts.
     this.loginService.getAccounts().subscribe(data => {
-      this.accounts=data;
-    console.log(data);
+      this.accounts = data;
+      // console.log(data);
 
     });
 
-
+    // initialise the form controls with required validator(mark as required)
     this.signupForm = new FormGroup({
       'username': new FormControl('', [
         Validators.required
@@ -53,78 +53,89 @@ export class SignUpComponent implements OnInit {
     });
 
 
-   }
+  }
 
   ngOnInit() {
-    console.log(this.accounts);
-
+    // console.log(this.accounts);
   }
 
-  onSubmit():void{
-    console.log(this.signupForm.value)
-    if(this.signupForm.valid){
+  onSubmit(): void {
+    // console.log(this.signupForm.value)
+
+    // check the form validity using the initialised form control validators
+    if (this.signupForm.valid) {
       console.log("form valid")
-      
-     if( (!this.checkAccountExists()) && this.passwordValid()){
-       this.credentialsValid =true;
-       let value = this.signupForm.value;
-        let newAccount: IAccount={
-        username: value.username,
-        password: value.password,
-        store: value.storeName,
-        email: value.email,
-        type: "Platinum",
+      // check whether the account exists and passwords is valid
+      if ((!this.checkAccountExists()) && this.passwordValid()) {
+        this.credentialsValid = true;
+        let value = this.signupForm.value;
+        let newAccount: IAccount = {
+          username: value.username,
+          password: value.password,
+          store: value.storeName,
+          email: value.email,
+          /* for the current version of the website doesn't have the membership options. 
+          Therefore, Platinum account is set by default.
+           */
+          type: "Platinum",
         }
 
-        console.log(newAccount);
+        // console.log(newAccount);
+        // add the account to firestore using the login service.
         this.loginService.addAccount(newAccount);
+        // return to home page (login component)
         this.router.navigateByUrl("");
-        return; 
+        return;
 
-     }
+      }
 
-     if(this.checkAccountExists()){
-      this.error ="Account already exists ! "
-      this.credentialsValid = false;
-      return;
-     }
+      // show an error if the account already exists
+      if (this.checkAccountExists()) {
+        this.error = "Account already exists ! "
+        this.credentialsValid = false;
+        return;
+      }
 
-     if(!this.passwordValid()){
-      this.error ="Passwords doesn't match ! "
-      this.credentialsValid = false;
-      return;
-     }
+      // show an error if passwords doesn't match
+      if (!this.passwordValid()) {
+        this.error = "Passwords doesn't match ! "
+        this.credentialsValid = false;
+        return;
+      }
     }
-      this.error ="Invalid email address ! "
-      this.credentialsValid = false;
+    // if all the email is not valid show an error
+    this.error = "Invalid email address ! "
+    this.credentialsValid = false;
   }
 
-  checkAccountExists(): boolean{
-    for(let account of this.accounts){
+  // the method to check the existance of an account
+  checkAccountExists(): boolean {
+    // compare username and passwords using for each loop.
+    for (let account of this.accounts) {
       console.log(account)
-      if(this.signupForm.value.username == account.username
-          && this.signupForm.value.password==account.password
-          ){     
-    console.log("account exists")
-          
-            return true;
-          }
-      
+      if (this.signupForm.value.username == account.username
+        && this.signupForm.value.password == account.password
+      ) {
+        console.log("account exists")
+
+        return true;
+      }
+
     };
     console.log("account does not exist")
 
     return false;
   }
+  // a method to check the password validity
+  passwordValid(): boolean {
+    if (this.signupForm.value.password
+      == this.signupForm.value.confirmPassword) {
+      console.log("password match")
 
-  passwordValid(): boolean{
-    if( this.signupForm.value.password 
-      == this.signupForm.value.confirmPassword){
-    console.log("password match")
-        
-        return true;
+      return true;
     }
-    
-    
+
+
     return false;
   }
 

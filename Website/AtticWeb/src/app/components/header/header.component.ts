@@ -7,7 +7,9 @@ import { IAccount } from 'src/app/Interfaces/IAccount';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  /* This component is used to display the page header. */
 
+  // input decorater to receive the page title and user account to display the user name and membership type.
   @Input() details!:{title?: string ; account?: IAccount}
 
   public title: string ="" ;
@@ -21,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.details!= undefined){
-      console.log(this.details);
+      // console.log(this.details);
       this.title=this.details.title;
       this.name=this.details.account.store;
       this.membership=this.details.account.type;
