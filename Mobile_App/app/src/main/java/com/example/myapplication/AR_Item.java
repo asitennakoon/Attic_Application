@@ -38,6 +38,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class AR_Item extends AppCompatActivity {
+    private boolean state;
     private static final String TAG = "AR_Item";
     private ModelRenderable renderable;
     ArFragment arFragment;
@@ -63,6 +64,7 @@ public class AR_Item extends AppCompatActivity {
         //loading progress bar
         progressbar = this.findViewById(R.id.progressBar);
         progressbar.setScaleY(4f);
+        progressbar.setVisibility(View.INVISIBLE);
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
@@ -158,6 +160,12 @@ public class AR_Item extends AppCompatActivity {
                                     Log.d(TAG, e.toString());
                                 } finally {
                                     productInfo.dismiss();
+                                    while (true){
+                                        if(!state){
+                                            progressbar.setVisibility(View.GONE);
+                                            break;
+                                        }
+                                    }
                                 }
                             });
 
@@ -194,6 +202,8 @@ public class AR_Item extends AppCompatActivity {
         color = (TextView) productInfo.findViewById(R.id.color);
         price = (TextView) productInfo.findViewById(R.id.price);
         stock = (TextView) productInfo.findViewById(R.id.stock);
+
+        progressbar.setVisibility(View.VISIBLE);
     }
 
     public void gobackCamera(View view) {
@@ -202,6 +212,7 @@ public class AR_Item extends AppCompatActivity {
     }
 
     private void buildModel(File file) {
+
         RenderableSource renderableSource = RenderableSource
                 .builder()
                 .setSource(this, Uri.parse(file.getPath()), RenderableSource.SourceType.GLB)
@@ -217,6 +228,7 @@ public class AR_Item extends AppCompatActivity {
                     Toast.makeText(this, "3D model built", Toast.LENGTH_SHORT).show();
                     renderable = modelRenderable;
                 });
+        state=false;
     }
 
 }

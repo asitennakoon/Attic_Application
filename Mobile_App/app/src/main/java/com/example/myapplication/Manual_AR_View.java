@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ public class Manual_AR_View extends AppCompatActivity {
     StorageReference objectsRef;
     private ModelRenderable renderable;
     ArFragment arFragment;
+    ProgressBar progressBarManual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,12 @@ public class Manual_AR_View extends AppCompatActivity {
 
         // created a reference to the folder of the selected room type in the cloud storage
         objectsRef = FirebaseStorage.getInstance().getReference().child("objects/" + roomType);
+
+
+        //set up progress bar
+        progressBarManual=this.findViewById(R.id.progressBarManual);
+        progressBarManual.setScaleY(3f);
+        progressBarManual.setVisibility(View.INVISIBLE);
     }
 
     public void showPopUp(View view) {
@@ -85,6 +93,9 @@ public class Manual_AR_View extends AppCompatActivity {
                 String model_path = data.getStringExtra(ManualView.PATH_KEY);
                 Log.d(LOG_TAG, "path: " + model_path);
                 Toast.makeText(this, "Building model", Toast.LENGTH_SHORT).show();
+
+                //showing progress bar
+                progressBarManual.setVisibility(View.VISIBLE);
 
                 // this variable is assigned with the path to the 3D object in the storage
                 StorageReference object = objectsRef.child(model_path);
@@ -121,6 +132,9 @@ public class Manual_AR_View extends AppCompatActivity {
                     Toast.makeText(this, "3D model built", Toast.LENGTH_SHORT).show();
                     renderable = modelRenderable;
                 });
+
+        //removing progress bar
+        progressBarManual.setVisibility(View.INVISIBLE);
     }
 
     public void exit(View view) {

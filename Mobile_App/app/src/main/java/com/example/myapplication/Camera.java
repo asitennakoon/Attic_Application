@@ -37,6 +37,7 @@ public class Camera extends AppCompatActivity {
         setContentView(R.layout.category_screen);
     }
 
+    //select category type
     public void loadProducts(View view) {
         askCameraPermission();
         chosenCategory = String.valueOf(view.getContentDescription());
@@ -64,6 +65,8 @@ public class Camera extends AppCompatActivity {
         return imageFile;
     }
 
+
+    // ask user camera permission
     private void askCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
@@ -83,6 +86,7 @@ public class Camera extends AppCompatActivity {
         }
     }
 
+    //capture image 01 - open phone camera
     public void openCamera() {
         //Toast.makeText(this, "ViewOptions open request", Toast.LENGTH_SHORT).show();
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -103,6 +107,7 @@ public class Camera extends AppCompatActivity {
         }
     }
 
+    //capture 2nd Image - open device camera
     public void openSecondCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (cameraIntent.resolveActivity(getPackageManager()) != null) {

@@ -55,4 +55,17 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBarManual"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:indeterminateOnly="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/fragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showAnimationBehavior="outward" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

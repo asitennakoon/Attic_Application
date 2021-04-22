@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
     }
 
+    //load category screen
     public void loadCategory(View view) {
         Intent intent = new Intent(view.getContext(), Camera.class);
         startActivity(intent);
     }
 
+    //load manual view screen
     public void ManualView(View view) {
         // setting animations for the button
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_anim);
