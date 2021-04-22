@@ -98,6 +98,7 @@ public class AR_Item extends AppCompatActivity {
                 // Set all image views in the layout to an array, to be loaded with preview images of products
                 int[] imageViews = {R.id.imageView1, R.id.imageView2, R.id.imageView3, R.id.imageView4, R.id.imageView5, R.id.imageView5, R.id.imageView6};
                 int index = 0;
+                boolean available = false;
 
                 // Listed images are iterated, filtering the thumbnail images relevant to the selected furniture category
                 for (StorageReference item : listResult.getItems()) {
@@ -171,7 +172,11 @@ public class AR_Item extends AppCompatActivity {
 
                         });
                         index++;
+                        available = true;
                     }
+                }
+                if (!available) {
+                    Toast.makeText(AR_Item.this, "Sorry! Currently, there are no products available for " + ViewOptions.recognizedStyle[2] + " " + ViewOptions.recognizedRoom[1] + " scene", Toast.LENGTH_LONG).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

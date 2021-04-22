@@ -317,6 +317,8 @@ public class ManualView extends AppCompatActivity {
                     public void run() {
                         if (!furniture.isEmpty()) {
                             addProducts();
+                        } else {
+                            Toast.makeText(ManualView.this, "Sorry! Currently, there are no products available for " + roomType + "s", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

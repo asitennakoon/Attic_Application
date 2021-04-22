@@ -131,7 +131,7 @@
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/category_btn"
                 android:contentDescription="@string/dresser"
-                android:drawableStart="@drawable/office_chair"
+                android:drawableStart="@drawable/dresser"
                 android:fontFamily="@font/poppins_light"
                 android:icon="@drawable/chair"
                 android:onClick="loadProducts"

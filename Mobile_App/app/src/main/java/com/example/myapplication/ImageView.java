@@ -39,8 +39,7 @@ public class ImageView extends AppCompatActivity {
         capturedImgBitMap = BitmapFactory.decodeFile(Camera.secondImagePath);
         capturedImage.setImageBitmap(capturedImgBitMap);
         Button classifierOutput = findViewById(R.id.classifierOutput);
-        classifierOutput.setText(ViewOptions.styleClassifierProbabilityOutput.get(0).toString() + "\n" + ViewOptions.roomClassifierProbabilityOutput.get(0).toString());
-
+        classifierOutput.setText("Recognized Furniture Style - " + ViewOptions.recognizedStyle[2] + " " + ViewOptions.recognizedStyle[4] + "\nRecognized Room Type - " + ViewOptions.recognizedRoom[1] + " " + ViewOptions.recognizedRoom[2]);
         generateColours();
     }
 

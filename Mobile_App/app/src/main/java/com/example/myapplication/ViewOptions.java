@@ -52,7 +52,7 @@ public class ViewOptions extends AppCompatActivity {
             recognizedStyle = topKProbability2.split(" ");
 
             predictedCategoryBtn = (Button) findViewById(R.id.categoryPrediction);
-            predictedCategoryBtn.setText("Attic's Classification - " + String.valueOf(recognizedStyle[2]) + " " + String.valueOf(recognizedStyle[4]) + " | " + String.valueOf(recognizedRoom[1]) + " " + String.valueOf(recognizedRoom[2]));
+            predictedCategoryBtn.setText("Attic's Classification - " + recognizedStyle[2] + " " + recognizedStyle[4] + " | " + recognizedRoom[1] + " " + recognizedRoom[2]);
 
         } catch (IOException e) {
             Toast.makeText(this, "Error occurred while running inference! Try capturing the images again", Toast.LENGTH_LONG).show();
