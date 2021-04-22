@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <!--    android:fitsSystemWindows="true"-->
@@ -36,6 +37,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbarAR"
         app:layout_constraintEnd_toEndOf="@+id/toolbarAR"
         app:layout_constraintTop_toTopOf="@+id/toolbarAR" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:indeterminateOnly="true"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarAR"
+        app:layout_constraintEnd_toEndOf="@+id/arFragment"
+        app:layout_constraintStart_toStartOf="@+id/arFragment"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAR"
+        app:showAnimationBehavior="outward"/>
 
     <fragment
         android:id="@+id/arFragment"

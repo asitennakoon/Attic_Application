@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,12 +51,18 @@ public class AR_Item extends AppCompatActivity {
     TextView color;
     TextView price;
     TextView stock;
+    ProgressBar progressbar;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ar_screen);
         productInfo = new Dialog(this);
         Toast.makeText(AR_Item.this, "Showing previews for " + Camera.chosenCategory + " category of " + ViewOptions.recognizedStyle[2] + " " + ViewOptions.recognizedRoom[1], Toast.LENGTH_LONG).show();
+
+
+        //loading progress bar
+        progressbar = this.findViewById(R.id.progressBar);
+        progressbar.setScaleY(4f);
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
