@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".help_view"></activity>
+        <activity android:name=".Help_View"></activity>
         <activity android:name=".Test" />
         <activity android:name=".Manual_AR_View" />
         <activity

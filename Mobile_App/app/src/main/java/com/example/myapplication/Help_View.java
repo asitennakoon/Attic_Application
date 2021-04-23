@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class help_view extends AppCompatActivity {
+public class Help_View extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

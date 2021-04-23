@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     //open help
     public void loadHelp(View view){
-        Intent intent = new Intent(view.getContext(),help_view.class);
+        Intent intent = new Intent(view.getContext(), Help_View.class);
         startActivity(intent);
     }
 
