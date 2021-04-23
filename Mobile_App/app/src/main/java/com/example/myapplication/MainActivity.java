@@ -57,4 +57,15 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ROOM_KEY, String.valueOf(view.getTag()));
         startActivity(intent);
     }
+
+    //open help
+    public void loadHelp(View view){
+        Intent intent = new Intent(view.getContext(),help_view.class);
+        startActivity(intent);
+    }
+
+    //exit the app
+    public void exit(View view) {
+        finishAffinity();
+    }
 }
